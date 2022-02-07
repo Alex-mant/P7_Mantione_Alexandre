@@ -6,20 +6,19 @@
 /*----Roboto----*/
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Lato&family=Roboto&display=swap");
 
-/*------------------Variables------------------*/
+/*------------------VARIABLES------------------*/
 :root {
   /*----Fonts----*/
-  --primaryF: "DM Sans";
-  --secondaryF: "Lato";
-  --tertiaryF: "Roboto";
+  --DMSans: "DM Sans";
+  --Lato: "Lato";
+  --Roboto: "Roboto";
   /*----Colors----*/
-  --primaryC: #3282f7;
-  --secondaryC: #68d9a4;
-  --tertiaryC: #ed6454;
+  --primColor: #3282f7;
+  --secondColor: #68d9a4;
+  --tertColor: #ed6454;
 }
 
-/*------------------Géneral------------------*/
-
+/*------------------GENERAL------------------*/
 * {
   margin: 0;
   padding: 0;
@@ -29,6 +28,7 @@ body {
   margin: 0 auto;
   width: 1240px;
 }
+
 /*------------------HEADING------------------*/
 header#heading {
   padding: 42px 0;
@@ -45,8 +45,8 @@ header#heading .icon {
 }
 header#heading h1 {
   margin: 0;
-  font-family: var(--primaryF);
-  color: var(--tertiaryC);
+  font-family: var(--DMSans);
+  color: var(--tertColor);
 }
 
 /*------------------SEARCH------------------*/
@@ -59,7 +59,7 @@ section#search {
 section#search input {
   box-sizing: border-box;
   padding: 0 20px;
-  font-family: var(--secondaryF);
+  font-family: var(--Lato);
   width: 100%;
   height: 70px;
   background-color: #e7e7e7;
@@ -74,8 +74,7 @@ section#search .search-icon {
   height: 32px;
 }
 
-/*------------------DropDown------------------*/
-
+/*------------------DROPDOWN------------------*/
 section#dropdown {
   display: flex;
   width: fit-content;
@@ -91,27 +90,26 @@ section#dropdown .button {
   border-radius: 5px;
 }
 section#dropdown .btn1 {
-  background-color: var(--primaryC);
+  background-color: var(--primColor);
 }
 section#dropdown .btn2 {
-  background-color: var(--secondaryC);
+  background-color: var(--secondColor);
 }
 section#dropdown .btn3 {
-  background-color: var(--tertiaryC);
+  background-color: var(--tertColor);
 }
 section#dropdown .button span.text-btn {
   position: absolute;
   left: 15px;
-  top: 23px;
+  top: 26px;
 }
 section#dropdown .button .dropdown-arrow {
   position: absolute;
   right: 15px;
-  top: 28px;
+  top: 30px;
 }
 
 /*------------------RECIPE------------------*/
-
 section#recipe {
   width: 380px;
   display: flex;
@@ -131,7 +129,7 @@ section#recipe .recipe__container {
   padding: 20px;
 }
 section#recipe .recipe__header {
-  font-family: var(--secondaryF);
+  font-family: var(--Lato);
   display: flex;
   justify-content: space-between;
 }
@@ -141,9 +139,20 @@ section#recipe .recipe__description {
 }
 section#recipe .recipe__description .recipe__desc__ingredients {
   width: 170px;
-  font-family: var(--secondaryF);
+  font-family: var(--Lato);
 }
 section#recipe .recipe__description .recipe__desc__buildOrder {
   width: 170px;
-  font-family: var(--tertiaryF);
+  font-family: var(--Roboto);
+}
+
+/*------------------JAVASCRIPT-CLASS-ASSIGN------------------*/
+.rotate{
+  transform: rotate(180deg);
+}
+.dBlock{
+  display: block;
+}
+.dNone{
+  display: none;
 }
