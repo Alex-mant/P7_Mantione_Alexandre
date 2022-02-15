@@ -3,9 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-mant/P7_Mantione_Alexandre.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-mant/P7_Mantione_Alexandre/issues"
+  },
+  "homepage": "https://github.com/Alex-mant/P7_Mantione_Alexandre#readme"
 }

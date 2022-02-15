@@ -16,6 +16,9 @@
   --primColor: #3282f7;
   --secondColor: #68d9a4;
   --tertColor: #ed6454;
+  /*----Ellipsis----*/
+  --line-h: 22px;
+  --nth-lines-trunc:4;
 }
 
 /*------------------GENERAL------------------*/
@@ -111,14 +114,17 @@ section#dropdown .button .dropdown-arrow {
 
 /*------------------RECIPE------------------*/
 section#recipe {
-  width: 380px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 150px; /*A supprimer*/
+  width: 100%;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-column-gap: 5%;
+  grid-row-gap: 0.8%;
 }
 section#recipe article.recipe {
+  width: 380px;
   border-radius: 5px;
   overflow: hidden;
+  height: 364px;
 }
 section#recipe .recipe__img {
   height: 180px;
@@ -133,18 +139,41 @@ section#recipe .recipe__header {
   display: flex;
   justify-content: space-between;
 }
+section#recipe .recipe__header h2{
+  font-size: 18px;
+  width: 70%;
+}
+span.recipe__timer {
+  position: relative;
+  top: -4px; 
+  width: 21%;
+  font-weight: bold;
+}
 section#recipe .recipe__description {
   padding-top: 20px;
   display: flex;
+  height: 180px;
 }
 section#recipe .recipe__description .recipe__desc__ingredients {
   width: 170px;
   font-family: var(--Lato);
+  font-size: 12px;
+  
 }
 section#recipe .recipe__description .recipe__desc__buildOrder {
-  width: 170px;
+  width: 172px;
+  height: 82px;
   font-family: var(--Roboto);
+  font-size: 12px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp:6;
+  -webkit-box-orient: vertical;
+  white-space: normal; 
 }
+
+
 
 /*------------------JAVASCRIPT-CLASS-ASSIGN------------------*/
 .rotate{
