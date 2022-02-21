@@ -92,6 +92,21 @@ section#dropdown .button {
   border: none;
   border-radius: 5px;
 }
+input.text-btn {
+  position: relative;
+  left: -15px;
+  color: #ffffff;
+  background:transparent;
+  width: 70%;
+  border: none;
+}
+input.text-btn:focus{
+  outline-width: 0;
+}
+input.text-btn::placeholder{
+  color: #ffffff;
+  position: absolute;  
+}
 section#dropdown .btn1 {
   background-color: var(--primColor);
 }
@@ -110,6 +125,7 @@ section#dropdown .button .dropdown-arrow {
   position: absolute;
   right: 15px;
   top: 30px;
+  cursor: pointer;
 }
 
 /*------------------RECIPE------------------*/

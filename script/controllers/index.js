@@ -1,34 +1,63 @@
-import { data } from "../utils/constants/data/recipes.js"
-
+const arrows = document.querySelectorAll(".dropdown-arrow");
 const recipeSection = document.querySelector("#recipe");
+const allRecipes = []
 
-recipeSection.innerHTML = data.map((rec) =>
-`
+//recupération des données vers le tableau allRecipes
+const fetchData = async() => {
+  await fetch("../../data/recipes.json")
+  .then((res) => res.json())
+  .then((promise) => {
+    allRecipes.push(...promise.recipes)
+  });  
+};
+
+//Affichage des recettes sur plage index
+
+const recipesDisplay = async() => {
+  await fetchData()
+  recipeSection.innerHTML = allRecipes.map((recipe) => 
+  `
   <article class="recipe">
-    <div class="recipe__img"></div>
-    <div class="recipe__container">
-      <div class="recipe__header">
-        <h2>${rec.name}</h2>
-        <span><img src="./assets/svg/timer.svg" alt=""/> <span class="recipe__timer">${rec.time} min</span</span>
-      </div>
-      <div class="recipe__description">
-        <div class="recipe__desc__ingredients">
-          <span class="listOfIngredients list1">
-            <ul>
-              <li>${""}</li>
-              <li>${""}</li>
-              <li>${""}</li>
-            </ul>
-          </span>
-        </div>
-        <div class="recipe__desc__buildOrder">
-          <span class="desc__bo">${rec.description}</span>
-        </div>
-      </div>
-    </div>
-  </article>
-`).join(" ");
-            
-// <li>${rec.ingredients[3].ingredient + " : " + rec.ingredients[0].quantity + rec.ingredients[0].unit}}</li>
-// <li>${rec.ingredients[4].ingredient + " : " + rec.ingredients[0].quantity + rec.ingredients[0].unit}}</li>
-// <li>${rec.ingredients[5].ingredient + " : " + rec.ingredients[0].quantity + rec.ingredients[0].unit}}</li>
+  <div class="recipe__img"></div>
+  <div class="recipe__container">
+  <div class="recipe__header">
+  <h2>${recipe.name}</h2>
+  <span><img src="./assets/svg/timer.svg" alt=""/> <span class="recipe__timer">${recipe.time} min</span</span>
+  </div>
+  <div class="recipe__description">
+  <div class="recipe__desc__ingredients">
+  <span class="listOfIngredients list1">
+  ${recipe.ingredients.map((r)=>{
+    if (r.quantity != undefined){
+      return r.ingredient +" : "+ r.quantity +" " + r.unit;
+    } else {
+      return r.ingredient
+    }
+  }).join("</br>").replaceAll("grammes","g").replaceAll("undefined","").replaceAll("cuillères à soupe","càs")
+}
+  </span>
+  </div>
+  <div class="recipe__desc__buildOrder">
+  <span class="desc__bo">${recipe.description}</span>
+  </div>
+  </div>
+  </div>
+  </article>`
+  ).join(" ")
+};
+
+recipesDisplay();
+
+
+// flèche dropdown retournement au click
+arrows.forEach((arrow) => {
+  arrow.addEventListener("click",() => {
+    if (arrow.classList.contains("not-returned")){
+      arrow.classList.replace("not-returned","returned")
+      arrow.style.transform = "rotate(180deg)";
+    }else{
+      arrow.classList.replace("returned","not-returned")
+      arrow.style.transform = "rotate(0deg)";
+    }
+});
+})
