@@ -57,7 +57,7 @@ section#search {
   display: flex;
   justify-content: center;
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 25px;
 }
 section#search input {
   box-sizing: border-box;
@@ -143,8 +143,14 @@ section#recipe article.recipe {
   height: 364px;
 }
 section#recipe .recipe__img {
+  position: relative;
   height: 180px;
   background-color: #b1acac;
+}
+section#recipe .recipe__img i{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 section#recipe .recipe__container {
   background-color: #e7e7e7;
