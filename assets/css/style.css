@@ -69,6 +69,9 @@ section#search input {
   color: rgb(100, 92, 92);
   border: none;
 }
+input[type="text"]:focus {
+  outline: none;
+}
 section#search .search-icon {
   position: absolute;
   right: 17px;
@@ -133,8 +136,8 @@ section#recipe {
   width: 100%;
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  grid-column-gap: 5%;
-  grid-row-gap: 0.8%;
+  grid-column-gap: 55px;
+  grid-row-gap: 50px;
 }
 section#recipe article.recipe {
   width: 380px;
