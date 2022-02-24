@@ -1,7 +1,11 @@
-const input = document.querySelector("input"); //querySelectorAll attendu /!\ forEach
+const input = document.querySelector("input");
 const arrows = document.querySelectorAll(".dropdown-arrow");
 const recipeSection = document.querySelector("#recipe");
 const servings = document.querySelector(".fa-utensils");
+const tagArea = document.querySelector("section#tag");
+const dropDArrow = document.querySelector(".dropdown-arrow");
+const dropDButton = document.querySelectorAll(".button")
+const crossCloseFilter = document.querySelectorAll(".fa-times-circle");
 const allRecipes = [];
 let resultArray = [];
 
@@ -11,13 +15,13 @@ const fetchData = async() => {
   .then((res) => res.json())
   .then((promise) => {
     allRecipes.length = 0;
-    allRecipes.push(...promise.recipes)
+    allRecipes.push(...promise.recipes);
   });  
 };
 
 //Affichage des recettes sur plage index
 const recipesDisplay = async(array) => {
-  await fetchData()
+  await fetchData();
   recipeSection.innerHTML = array.map((recipe) =>
   `
   <article class="recipe">
@@ -42,7 +46,7 @@ const recipesDisplay = async(array) => {
               } else {
                 return r.ingredient
               }
-            }).join("</br>").replaceAll("grammes","g").replaceAll("undefined","").replaceAll("cuillères à soupe","càs")
+            }).join("</br>").replaceAll("grammes","g").replaceAll("undefined","").replaceAll("cuillère à soupe","càs").replaceAll("cuillères à soupe","càs")
             }
           </span>
         </div>
@@ -57,31 +61,56 @@ const recipesDisplay = async(array) => {
 
 recipesDisplay(allRecipes);
 
-
-// flèche dropdown retournement au click
+// flèche dropdown 
 arrows.forEach((arrow) => {
   arrow.addEventListener("click",() => {
+    const thisFilter = arrow.parentElement.parentElement;
     if (arrow.classList.contains("not-returned")){
-      arrow.classList.replace("not-returned","returned")
-      arrow.style.transform = "rotate(180deg)";// mettre dans css
+      Array.from(arrows).forEach((arrow) => {
+        arrow.classList.replace("returned", "not-returned")
+        dropDButton.forEach((btn) => {
+          btn.style.width = "170px";
+        })
+      })
+      arrow.classList.replace("not-returned","returned");
+      thisFilter.style.width = "600px"
     }else{
-      arrow.classList.replace("returned","not-returned")
-      arrow.style.transform = "rotate(0deg)";// mettre dans css
+      arrow.classList.replace("returned","not-returned");
+      thisFilter.style.width = "170px"
     }
+  });
 });
-})
+
 
 //research
 function findRecipe (recherche, allRecipes) {
   return allRecipes.filter(recipe => {
     const regex = new RegExp(recherche, 'gi');
     return recipe.name.match(regex)
-  })
+  });
 };
 
 function resultDisplay () {
   resultArray = findRecipe(this.value, allRecipes);
   recipesDisplay(resultArray);
-}
+};
 
 input.addEventListener("input", resultDisplay);
+
+//test
+function test(az){
+  let x = document.querySelector(".tag span");
+  x.innerText = az;
+  x.value = x.innerText;
+  x.addEventListener("click", resultDisplay);
+}
+
+test("Citron");
+
+// suppression filtre tag
+crossCloseFilter.forEach((cross) => {
+  cross.addEventListener("click", () => {
+    cross.parentElement.parentElement.removeChild(cross.parentElement)
+    //suppression du filtre fonctionnellement à faire
+  });
+});

@@ -79,6 +79,28 @@ section#search .search-icon {
   width: 32px;
   height: 32px;
 }
+/*------------------TAG-AREA------------------*/
+section#tag{
+  /* display: none; */
+  position: relative;
+  margin-bottom: 30px;
+}
+.tag{
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  background: var(--primColor);
+  color: #ffffff;
+}
+.fa-times-circle{
+  font-size: 18px;
+  cursor: pointer;
+}
+
 
 /*------------------DROPDOWN------------------*/
 section#dropdown {
@@ -96,8 +118,6 @@ section#dropdown .button {
   border-radius: 5px;
 }
 input.text-btn {
-  position: relative;
-  left: -15px;
   color: #ffffff;
   background:transparent;
   width: 70%;
@@ -109,6 +129,13 @@ input.text-btn:focus{
 input.text-btn::placeholder{
   color: #ffffff;
   position: absolute;  
+}
+section#dropdown button{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
 }
 section#dropdown .btn1 {
   background-color: var(--primColor);
@@ -129,6 +156,12 @@ section#dropdown .button .dropdown-arrow {
   right: 15px;
   top: 30px;
   cursor: pointer;
+}
+.returned{
+  transform: rotate(180deg);
+}
+.not-returned{
+  transform: rotate(0deg);
 }
 
 /*------------------RECIPE------------------*/
