@@ -6,6 +6,8 @@ const tagArea = document.querySelector("section#tag");
 const dropDArrow = document.querySelector(".dropdown-arrow");
 const dropDButton = document.querySelectorAll(".button")
 const crossCloseFilter = document.querySelectorAll(".fa-times-circle");
+const tagList = document.querySelector(".liste-tags");
+console.log(tagList);
 const allRecipes = [];
 let resultArray = [];
 
@@ -70,17 +72,21 @@ arrows.forEach((arrow) => {
         arrow.classList.replace("returned", "not-returned")
         dropDButton.forEach((btn) => {
           btn.style.width = "170px";
+          tagList.style.display = "none";
         })
       })
       arrow.classList.replace("not-returned","returned");
-      thisFilter.style.width = "600px"
+      thisFilter.style.width = "690px"
+      thisFilter.style.borderRadius = "5px 5px 0 0"
+      tagList.style.display = "grid"
     }else{
       arrow.classList.replace("returned","not-returned");
       thisFilter.style.width = "170px"
+      thisFilter.style.borderRadius = "5px"
+      tagList.style.display = "none"
     }
   });
 });
-
 
 //research
 function findRecipe (recherche, allRecipes) {
@@ -96,16 +102,6 @@ function resultDisplay () {
 };
 
 input.addEventListener("input", resultDisplay);
-
-//test
-function test(az){
-  let x = document.querySelector(".tag span");
-  x.innerText = az;
-  x.value = x.innerText;
-  x.addEventListener("click", resultDisplay);
-}
-
-test("Citron");
 
 // suppression filtre tag
 crossCloseFilter.forEach((cross) => {

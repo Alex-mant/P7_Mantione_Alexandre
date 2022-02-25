@@ -151,6 +151,19 @@ section#dropdown .button span.text-btn {
   left: 15px;
   top: 26px;
 }
+.liste-tags{
+  padding: 15px;
+  display: none;
+  grid-template-columns: 28.33% 28.33% 28.33%;
+  gap: 15.01%;
+  width: 660px;
+  color: #ffffff;
+  background-color: var(--primColor);
+  left: 0;
+  border-radius: 0 0 5px 5px;
+}
+
+
 section#dropdown .button .dropdown-arrow {
   position: absolute;
   right: 15px;
