@@ -158,9 +158,17 @@ section#dropdown .button span.text-btn {
   gap: 15.01%;
   width: 660px;
   color: #ffffff;
-  background-color: var(--primColor);
   left: 0;
   border-radius: 0 0 5px 5px;
+}
+.button1-tag .liste-tags{
+  background-color: var(--primColor);
+}
+.button2-tag .liste-tags{
+  background-color: var(--secondColor);
+}
+.button3-tag .liste-tags{
+  background-color: var(--tertColor);
 }
 
 

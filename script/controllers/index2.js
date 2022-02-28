@@ -6,8 +6,7 @@ const tagArea = document.querySelector("section#tag");
 const dropDArrow = document.querySelector(".dropdown-arrow");
 const dropDButton = document.querySelectorAll(".button")
 const crossCloseFilter = document.querySelectorAll(".fa-times-circle");
-const tagList = document.querySelector(".liste-tags");
-console.log(tagList);
+const tagList = document.querySelectorAll(".liste-tags");
 const allRecipes = [];
 let resultArray = [];
 
@@ -64,6 +63,18 @@ const recipesDisplay = async(array) => {
 recipesDisplay(allRecipes);
 
 // flèche dropdown 
+//borderRadius a revoir
+const displayTagList = (forEachElement, filter) => {
+  let thisTagList = forEachElement.parentElement.parentElement.parentElement.children[1];
+  if (forEachElement.classList.contains("returned")){
+    thisTagList.style.display = "grid"
+    filter.style.borderRadius = "5px 5px 0 0";
+  }else if (forEachElement.classList.contains("not-returned")){
+    thisTagList.style.display = "none"
+    filter.style.borderRadius = "5px";
+  }
+}
+
 arrows.forEach((arrow) => {
   arrow.addEventListener("click",() => {
     const thisFilter = arrow.parentElement.parentElement;
@@ -72,21 +83,24 @@ arrows.forEach((arrow) => {
         arrow.classList.replace("returned", "not-returned")
         dropDButton.forEach((btn) => {
           btn.style.width = "170px";
-          tagList.style.display = "none";
+          displayTagList(arrow, thisFilter);
         })
       })
       arrow.classList.replace("not-returned","returned");
       thisFilter.style.width = "690px"
-      thisFilter.style.borderRadius = "5px 5px 0 0"
-      tagList.style.display = "grid"
     }else{
       arrow.classList.replace("returned","not-returned");
       thisFilter.style.width = "170px"
-      thisFilter.style.borderRadius = "5px"
-      tagList.style.display = "none"
     }
+    displayTagList(arrow, thisFilter);
   });
 });
+
+
+
+
+
+
 
 //research
 function findRecipe (recherche, allRecipes) {
