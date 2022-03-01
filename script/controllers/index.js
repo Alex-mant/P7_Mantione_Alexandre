@@ -30,13 +30,17 @@ const pageLauncher = async() => {
     listOfAppliances = arrayDoubleTreatment(allRecipes, listOfAppliances, "appliance");
     //Traitement de la liste des ustensiles
     listOfUstensils = arrayDoubleTreatment(allRecipes, listOfUstensils, "ustensils");
+
+    /*-------------------------A REVOIR "DOUBLONS /!\"--------------------*/
     //Traitement de la liste des ingredients
     allRecipes.map((recipe) => {
         recipe.ingredients.map((ingredient)=>{
             listOfIngredients.push(ingredient.ingredient)
         })
     })
-    listOfIngredients.filter((val,index) => listOfIngredients.indexOf(val) == index);
+    // listOfIngredients.filter((val,index) => listOfIngredients.indexOf(val) == index);
+    /*-----------------------------------------------------------------------*/
+
     //Création DOM pour chaques recettes
     recipesDisplay(allRecipes);
     //Recherches simples
