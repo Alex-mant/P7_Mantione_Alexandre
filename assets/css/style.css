@@ -51,13 +51,17 @@ header#heading h1 {
   font-family: var(--DMSans);
   color: var(--tertColor);
 }
-
+/*----------------MAIN------------------*/
+main {
+  display: flex;
+  flex-direction: column; 
+  gap: 30px;
+}
 /*------------------SEARCH------------------*/
 section#search {
   display: flex;
   justify-content: center;
   position: relative;
-  margin-bottom: 25px;
 }
 section#search input {
   box-sizing: border-box;
@@ -81,9 +85,8 @@ section#search .search-icon {
 }
 /*------------------TAG-AREA------------------*/
 section#tag{
-  /* display: none; */
+  display: none;
   position: relative;
-  margin-bottom: 30px;
 }
 .tag{
   width: 90px;
@@ -106,7 +109,6 @@ section#tag{
 section#dropdown {
   display: flex;
   width: fit-content;
-  margin-bottom: 25px;
 }
 section#dropdown .button {
   position: relative;
@@ -128,6 +130,7 @@ input.text-btn:focus{
 }
 input.text-btn::placeholder{
   color: #ffffff;
+  opacity: 95%;
   position: absolute;  
 }
 section#dropdown button{
@@ -154,12 +157,17 @@ section#dropdown .button span.text-btn {
 .liste-tags{
   padding: 15px;
   display: none;
-  grid-template-columns: 28.33% 28.33% 28.33%;
-  gap: 15.01%;
+  grid-template-columns: 26.33% 26.33% 26.33%;
+  gap: 8%;
   width: 660px;
   color: #ffffff;
   left: 0;
   border-radius: 0 0 5px 5px;
+  height: 180px;
+  overflow-y: scroll;
+}
+.liste-tags p {
+  cursor: pointer;
 }
 .button1-tag .liste-tags{
   background-color: var(--primColor);
