@@ -16,6 +16,7 @@ let resultArray = []; //Reçoit résultat de la recherche
 let listOfIngredients = []; //Reçoit la liste des ingrédients sans doublons
 let listOfAppliances = []; //Reçoit la liste des appareils sans doublons
 let listOfUstensils = []; //Reçoit la liste des ustensiles sans doublons
+let listOfRecipes = []; //Reçoit la liste des recettes sans doublons
 /*-------------------DOM--------------------*/
 //tags
 const ingredientsTagList = document.querySelector(".ingredients-tags");
@@ -40,17 +41,20 @@ const pageLauncher = async() => {
     listOfUstensils = arrayDoubleTreatment(allRecipes, listOfUstensils, "ustensils");
     //Traitement de la liste des ingredients
     listOfIngredients = arrayDoubleTreatment(allRecipes, listOfIngredients, "ingredients");   
+    //Traitement de la liste des recettes
+    listOfRecipes = arrayDoubleTreatment(allRecipes, listOfRecipes, "name");
 
     //Création DOM pour chaques recettes
     recipesDisplay(allRecipes);
 
     //Recherches simples
-    research(allRecipes,resultArray,searchRecipes);
-
+    research(allRecipes,resultArray,searchRecipes, "name");
+    research(listOfIngredients,resultArray,searchIngredients);
+    
     //Dropdown : recherches affinées
     dropdown();
 
-    //filtre par Tags
+    //Filtre par Tags
     tagListDisplay(listOfAppliances,appareilsTagList);
     tagListDisplay(listOfUstensils,ustensilesTagList);
     tagListDisplay(listOfIngredients,ingredientsTagList);
