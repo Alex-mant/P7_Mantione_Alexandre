@@ -10,7 +10,7 @@ export const dropdown = () => {
     let thisTagList = forEachElement.parentElement.parentElement.parentElement.children[1];
 
     if (forEachElement.classList.contains("returned")){
-      thisTagList.style.display = "grid"
+      thisTagList.style.display = "flex"
       filter.style.borderRadius = "5px 5px 0 0";
       recipeSection.style.marginTop = thisTagList.offsetHeight/15 +"px"
     }

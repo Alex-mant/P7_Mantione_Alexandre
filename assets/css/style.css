@@ -155,19 +155,24 @@ section#dropdown .button span.text-btn {
   top: 26px;
 }
 .liste-tags{
-  padding: 15px;
   display: none;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 15px;
   grid-template-columns: 26.33% 26.33% 26.33%;
   gap: 8%;
   width: 660px;
   color: #ffffff;
   left: 0;
   border-radius: 0 0 5px 5px;
-  height: 180px;
+  height: fit-content;
+  max-height: 150px;
   overflow-y: scroll;
 }
 .liste-tags p {
   cursor: pointer;
+  width: 150px;
+  margin-bottom: 10px;
 }
 .button1-tag .liste-tags{
   background-color: var(--primColor);
