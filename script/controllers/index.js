@@ -49,8 +49,7 @@ const pageLauncher = async() => {
 
     //Recherches simples
     research(allRecipes,resultArray,searchRecipes, "name");
-    research(listOfIngredients,resultArray,searchIngredients);
-    
+   
     //Dropdown : recherches affinées
     dropdown();
 
