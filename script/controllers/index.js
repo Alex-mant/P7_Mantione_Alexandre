@@ -26,12 +26,14 @@ const searchRecipes = document.querySelector("input.search-recipes");
 const searchIngredients = document.querySelector("input.search-ingredients");
 const searchAppliances = document.querySelector("input.search-appliances");
 const searchUstensils = document.querySelector("input.search-ustensils");
+//DATA
+const myJson = "../../data/recipes.json";
 
 /*--Charge la page entière avec tous les modules--*/
 const pageLauncher = async() => {
 
     //Traitement des données (JSON) et stockage
-    await fetchData(allRecipes);
+    await fetchData(allRecipes, "recipes", myJson);
     //Traitement de la liste des appareils
     listOfAppliances = arrayDoubleTreatment(allRecipes, listOfAppliances, "appliance");
     // //Traitement de la liste des ustensiles
