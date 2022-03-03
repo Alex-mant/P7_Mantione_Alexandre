@@ -1,5 +1,3 @@
-import {tags} from "./tags.js";
-
 /*-------------------------DOM--------------------------*/
 const arrows = document.querySelectorAll(".dropdown-arrow");
 const dropDButton = document.querySelectorAll(".button");

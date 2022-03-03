@@ -1,15 +1,12 @@
 /*-------------------IMPORT--------------------*/
 import {recipesDisplay} from "../../views/recipesDisplay.js";
 
-/*-------------------DOM--------------------*/
-const input = document.querySelector("input");
-
 /*------------------FUNCTION--------------------*/
-export const simpleResearch = (array, newArray) => {
+export const research = (array, newArray, input) => {
     function findRecipe (recherche) {
-        return array.filter(recipe => {
+        return array.filter(inArray => {
             const regex = new RegExp(recherche, 'gi');
-            return recipe.name.match(regex)
+            return inArray.name.match(regex)
         });
     };
         
