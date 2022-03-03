@@ -20,7 +20,7 @@ export const recipesDisplay = (array) => {
       <div class="recipe__description">
         <div class="recipe__desc__ingredients">
           <span class="listOfIngredients list1">
-            ${//faire fonction traitement
+            ${//faire fonction traitement Concat
               recipe.ingredients.map((r)=>{
               if (r.quantity){
                 return r.ingredient +" : "+ r.quantity +" " + r.unit;
