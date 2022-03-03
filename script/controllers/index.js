@@ -27,7 +27,7 @@ const searchIngredients = document.querySelector("input.search-ingredients");
 const searchAppliances = document.querySelector("input.search-appliances");
 const searchUstensils = document.querySelector("input.search-ustensils");
 //DATA
-const myJson = "./../data/recipes.json";
+const myJson = "../../data/recipes.json";
 
 /*--Charge la page entière avec tous les modules--*/
 const pageLauncher = async() => {
