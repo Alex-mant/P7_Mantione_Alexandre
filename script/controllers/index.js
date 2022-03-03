@@ -27,11 +27,7 @@ const searchIngredients = document.querySelector("input.search-ingredients");
 const searchAppliances = document.querySelector("input.search-appliances");
 const searchUstensils = document.querySelector("input.search-ustensils");
 //DATA
-<<<<<<< HEAD
 const myJson = "../data/recipes.json";
-=======
-const myJson = "https://raw.githubusercontent.com/Alex-mant/P7_Mantione_Alexandre/data/data/recipes.json";
->>>>>>> e1be5e8b9aacfcd2ee023c4863b5614f54574956
 
 /*--Charge la page entière avec tous les modules--*/
 const pageLauncher = async() => {
