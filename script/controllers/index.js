@@ -17,6 +17,7 @@ let listOfIngredients = []; //Reçoit la liste des ingrédients sans doublons
 let listOfAppliances = []; //Reçoit la liste des appareils sans doublons
 let listOfUstensils = []; //Reçoit la liste des ustensiles sans doublons
 let listOfRecipes = []; //Reçoit la liste des recettes sans doublons
+let listOfTagsAffined = [];
 /*-------------------DOM--------------------*/
 //tags
 const ingredientsTagList = document.querySelector(".ingredients-tags");
@@ -47,8 +48,11 @@ const pageLauncher = async() => {
     //Création DOM pour chaques recettes
     recipesDisplay(allRecipes);
 
-    //Recherches simples
-    research(allRecipes,resultArray,searchRecipes, "name");
+    // research(allRecipes,resultArray,searchRecipes, "name"); ICI
+    research(searchRecipes, allRecipes, "name", resultArray );
+    research(searchIngredients, listOfIngredients , ingredientsTagList, listOfTagsAffined);
+    research(searchAppliances, listOfAppliances , appareilsTagList, listOfTagsAffined);
+    research(searchUstensils, listOfUstensils , ustensilesTagList, listOfTagsAffined);
    
     //Dropdown : recherches affinées
     dropdown();
@@ -58,5 +62,7 @@ const pageLauncher = async() => {
     tagListDisplay(listOfUstensils,ustensilesTagList);
     tagListDisplay(listOfIngredients,ingredientsTagList);
     tags();
+
 }
+
 pageLauncher();
