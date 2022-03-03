@@ -27,3 +27,4 @@ export const research = (input, array,target, newArray) => {
 
   input.addEventListener("input", resultDisplay);
 };
+/*-------------------------------------------------------*/

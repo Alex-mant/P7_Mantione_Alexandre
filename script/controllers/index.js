@@ -5,7 +5,7 @@ import {fetchData} from "../entity/fetchData.js";
 import {arrayDoubleTreatment} from "../utils/helpers/arrayDouble.js";
 import {dropdown} from "../utils/helpers/dropdown.js";
 import {research} from "../utils/helpers/research.js";
-import {tags} from "../utils/helpers/tags.js";
+import { tags } from "../utils/helpers/tags.js";
 //Views
 import {recipesDisplay} from "../views/recipesDisplay.js"
 import {tagListDisplay} from "../views/tagsListDisplay.js";
@@ -16,7 +16,6 @@ let resultArray = []; //Reçoit résultat de la recherche
 let listOfIngredients = []; //Reçoit la liste des ingrédients sans doublons
 let listOfAppliances = []; //Reçoit la liste des appareils sans doublons
 let listOfUstensils = []; //Reçoit la liste des ustensiles sans doublons
-let listOfRecipes = []; //Reçoit la liste des recettes sans doublons
 let listOfTagsAffined = [];
 /*-------------------DOM--------------------*/
 //tags
@@ -42,8 +41,6 @@ const pageLauncher = async() => {
     listOfUstensils = arrayDoubleTreatment(allRecipes, listOfUstensils, "ustensils");
     //Traitement de la liste des ingredients
     listOfIngredients = arrayDoubleTreatment(allRecipes, listOfIngredients, "ingredients");   
-    //Traitement de la liste des recettes
-    listOfRecipes = arrayDoubleTreatment(allRecipes, listOfRecipes, "name");
 
     //Création DOM pour chaques recettes
     recipesDisplay(allRecipes);

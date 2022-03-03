@@ -85,23 +85,38 @@ section#search .search-icon {
 }
 /*------------------TAG-AREA------------------*/
 section#tag{
-  display: none;
+  display: flex;
+  flex-wrap: wrap;
   position: relative;
+
 }
 .tag{
-  width: 90px;
+  position: relative;
+  margin: 0 5px 5px 0;
+  width: 135px;
   height: 40px;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  padding: 5px 0px;
   background: var(--primColor);
   color: #ffffff;
+  white-space: nowrap;
+}
+
+span.tagName{
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100px;
+  left: 10px;
 }
 .fa-times-circle{
   font-size: 18px;
   cursor: pointer;
+  position: absolute;
+  right: 5px;
 }
 
 
@@ -173,6 +188,9 @@ section#dropdown .button span.text-btn {
   cursor: pointer;
   width: 150px;
   margin-bottom: 10px;
+}
+.liste-tags p:hover{
+  transform: scale(105%);
 }
 .button1-tag .liste-tags{
   background-color: var(--primColor);
