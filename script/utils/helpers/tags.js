@@ -1,16 +1,15 @@
 import {dom} from "../constants/domElement.js";
-import { recipesDisplay } from "../../views/recipesDisplay.js";
-import { tagListDisplay } from "../../views/tagsListDisplay.js";
-
+let countOfListener = 0;
 /*--------------------------FUNCTION-----------------------------*/
 
-export const tags = (array, liste, newArray) => {
+export const tagEvents = (array, liste) => {
     let elementList = Array.from(liste.children);
+
     elementList.forEach((tags) => {
-        tags.addEventListener("click", () =>{
-            let div = document.createElement("div")
+        tags.addEventListener("click", function e(){
+            let div = document.createElement("div");
             let span = document.createElement("span");
-            let cross = document.createElement("i")
+            let cross = document.createElement("i");
             div.classList.add("tag");      
             span.classList.add("tagName");
             cross.classList.add("far","fa-times-circle");
@@ -21,13 +20,25 @@ export const tags = (array, liste, newArray) => {
             
             div.style.background = getComputedStyle(tags.parentElement).backgroundColor;
             
-            array = array.filter(tag => tag != tags.innerText)
-
-            console.log(newArray);
-
-            tagListDisplay(array, liste)
+            array = array.filter(tag => tag != tags.innerText);
             
-        })
-       
-    });
-}
+            if (countOfListener >= 6){
+                dom.tagSection.removeChild(div);
+            } else{
+                tags.remove();          
+                countOfListener++;
+            }
+
+            cross.addEventListener("click", () => {
+                let tag = document.createElement("p");
+                tag.innerText = cross.parentElement.children[0].innerText;
+
+                cross.parentElement.remove();
+                countOfListener--;
+                         
+            })
+            
+            
+        });
+    });        
+};

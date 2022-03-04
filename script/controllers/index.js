@@ -9,7 +9,7 @@ import {storage} from "../utils/constants/dataStorage.js"
 import {arrayDoubleTreatment} from "../utils/helpers/arrayDouble.js";
 import {dropdown} from "../utils/helpers/dropdown.js";
 import {research} from "../utils/helpers/research.js";
-import {tags} from "../utils/helpers/tags.js";
+import {tagEvents} from "../utils/helpers/tags.js";
 //Views
 import {recipesDisplay} from "../views/recipesDisplay.js"
 import {tagListDisplay} from "../views/tagsListDisplay.js";
@@ -45,9 +45,9 @@ const pageLauncher = async() => {
     tagListDisplay(storage.listOfUstensils,dom.ustensilesTagList);
     tagListDisplay(storage.listOfIngredients,dom.ingredientsTagList);
 
-    tags(storage.listOfIngredients, dom.ingredientsTagList, storage.resultArray);
-    tags(storage.listOfUstensils, dom.ustensilesTagList, storage.resultArray);
-    tags(storage.listOfAppliances, dom.appareilsTagList, storage.resultArray);
+    tagEvents(storage.listOfIngredients, dom.ingredientsTagList);
+    tagEvents(storage.listOfUstensils, dom.ustensilesTagList);
+    tagEvents(storage.listOfAppliances, dom.appareilsTagList);
 
 }
 

@@ -3,7 +3,7 @@ import { recipesDisplay } from "../../views/recipesDisplay.js";
 import { tagListDisplay } from "../../views/tagsListDisplay.js";
 
 /*------------------FUNCTION--------------------*/
-export const research = (input, array,target, newArray) => {
+export const research = (input, array, target, newArray) => {
   function findRecipe(recherche) {
     return array.filter((inArray) => {
       const regex = new RegExp(recherche, "gi");
