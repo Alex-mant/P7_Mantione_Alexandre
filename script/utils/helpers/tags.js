@@ -1,14 +1,14 @@
+import { recipesDisplay } from "../../views/recipesDisplay.js";
+import { tagListDisplay } from "../../views/tagsListDisplay.js";
+
 /*-------------------------DOM-----------------------------*/
 const crossCloseFilter = document.querySelectorAll(".fa-times-circle");
 const tagSection = document.querySelector("#tag");
 /*--------------------------FUNCTION-----------------------------*/
 
-
-
-
-export const tags = () => {
-    const tagList = document.querySelectorAll(".liste-tags p");
-    tagList.forEach((tags) => {
+export const tags = (array, liste, newArray) => {
+    let elementList = Array.from(liste.children);
+    elementList.forEach((tags) => {
         tags.addEventListener("click", () =>{
             let div = document.createElement("div")
             let span = document.createElement("span");
@@ -17,41 +17,19 @@ export const tags = () => {
             span.classList.add("tagName");
             cross.classList.add("far","fa-times-circle");
             span.innerText = tags.innerText;
-            
-            // if (array.includes(tags.innerText)){
-            //     div.style.c
-            // }
-
             tagSection.append(div);
             div.append(span);
             div.append(cross);
+            
+            div.style.background = getComputedStyle(tags.parentElement).backgroundColor;
+            
+            array = array.filter(tag => tag != tags.innerText)
+
+            console.log(newArray);
+
+            tagListDisplay(array, liste)
+            
         })
+       
     });
 }
-
-// export const tags = () => {
-
-//     // "tagList" n'existe pas encore au moment de l'évenement; createTagFilter --> nOk
-    
-//     const createTagsFilter = () =>{
-//         tagList.forEach((tags) => {
-//             tags.addEventListener("click", function tagEvent(){
-//                tagSection.innerHTML = `
-//                 <div class="tag">
-//                     <span>${tags.innerText}</span>
-//                     <i class="far fa-times-circle"></i>
-//                 </div>
-//                `
-//             })
-//         })
-//     }
-//     createTagsFilter();
-
-//     crossCloseFilter.forEach((cross) => {
-//         cross.addEventListener("click", () => {
-//             cross.parentElement.parentElement.removeChild(cross.parentElement)
-            
-//         });
-//     });
-    
-// }
