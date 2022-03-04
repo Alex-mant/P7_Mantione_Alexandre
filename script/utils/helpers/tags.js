@@ -1,9 +1,7 @@
+import {dom} from "../constants/domElement.js";
 import { recipesDisplay } from "../../views/recipesDisplay.js";
 import { tagListDisplay } from "../../views/tagsListDisplay.js";
 
-/*-------------------------DOM-----------------------------*/
-const crossCloseFilter = document.querySelectorAll(".fa-times-circle");
-const tagSection = document.querySelector("#tag");
 /*--------------------------FUNCTION-----------------------------*/
 
 export const tags = (array, liste, newArray) => {
@@ -17,7 +15,7 @@ export const tags = (array, liste, newArray) => {
             span.classList.add("tagName");
             cross.classList.add("far","fa-times-circle");
             span.innerText = tags.innerText;
-            tagSection.append(div);
+            dom.tagSection.append(div);
             div.append(span);
             div.append(cross);
             

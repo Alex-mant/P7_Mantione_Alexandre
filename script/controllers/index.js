@@ -1,64 +1,53 @@
 /*----------------------IMPORT----------------------*/
 //Entity
 import {fetchData} from "../entity/fetchData.js";
+//DOM
+import {dom} from "../utils/constants/domElement.js"
+/*---------------DATA--------------*/
+import {storage} from "../utils/constants/dataStorage.js"
 //Helpers
 import {arrayDoubleTreatment} from "../utils/helpers/arrayDouble.js";
 import {dropdown} from "../utils/helpers/dropdown.js";
 import {research} from "../utils/helpers/research.js";
-import { tags } from "../utils/helpers/tags.js";
+import {tags} from "../utils/helpers/tags.js";
 //Views
 import {recipesDisplay} from "../views/recipesDisplay.js"
 import {tagListDisplay} from "../views/tagsListDisplay.js";
-
-/*---------------Stockage des données--------------*/
-let allRecipes = []; //Reçoit "promise" cf:fetchData.js
-let resultArray = []; //Reçoit résultat de la recherche
-let listOfIngredients = []; //Reçoit la liste des ingrédients sans doublons
-let listOfAppliances = []; //Reçoit la liste des appareils sans doublons
-let listOfUstensils = []; //Reçoit la liste des ustensiles sans doublons
-let listOfTagsAffined = [];
-/*-------------------DOM--------------------*/
-//tags
-const ingredientsTagList = document.querySelector(".ingredients-tags");
-const appareilsTagList = document.querySelector(".appareils-tags");
-const ustensilesTagList = document.querySelector(".ustensiles-tags");
-//inputs
-const searchRecipes = document.querySelector("input.search-recipes");
-const searchIngredients = document.querySelector("input.search-ingredients");
-const searchAppliances = document.querySelector("input.search-appliances");
-const searchUstensils = document.querySelector("input.search-ustensils");
-//DATA
+//Links
 const myJson = "data/recipes.json";
 
 /*--Charge la page entière avec tous les modules--*/
 const pageLauncher = async() => {
 
     //Traitement des données (JSON) et stockage
-    await fetchData(allRecipes, "recipes", myJson);
+    await fetchData(storage.allRecipes, "recipes", myJson);
     //Traitement de la liste des appareils
-    listOfAppliances = arrayDoubleTreatment(allRecipes, listOfAppliances, "appliance");
+    storage.listOfAppliances = arrayDoubleTreatment(storage.allRecipes, storage.listOfAppliances, "appliance");
     // //Traitement de la liste des ustensiles
-    listOfUstensils = arrayDoubleTreatment(allRecipes, listOfUstensils, "ustensils");
+    storage.listOfUstensils = arrayDoubleTreatment(storage.allRecipes, storage.listOfUstensils, "ustensils");
     //Traitement de la liste des ingredients
-    listOfIngredients = arrayDoubleTreatment(allRecipes, listOfIngredients, "ingredients");   
+    storage.listOfIngredients = arrayDoubleTreatment(storage.allRecipes, storage.listOfIngredients, "ingredients");   
 
     //Création DOM pour chaques recettes
-    recipesDisplay(allRecipes);
-
-    // research(allRecipes,resultArray,searchRecipes, "name"); ICI
-    research(searchRecipes, allRecipes, "name", resultArray );
-    research(searchIngredients, listOfIngredients , ingredientsTagList, listOfTagsAffined);
-    research(searchAppliances, listOfAppliances , appareilsTagList, listOfTagsAffined);
-    research(searchUstensils, listOfUstensils , ustensilesTagList, listOfTagsAffined);
+    recipesDisplay(storage.allRecipes);
+    
+    //Recherche
+    research(dom.searchRecipes, storage.allRecipes, "name", storage.resultArray );
+    research(dom.searchIngredients, storage.listOfIngredients , dom.ingredientsTagList, storage.listOfTagsAffined);
+    research(dom.searchAppliances, storage.listOfAppliances , dom.appareilsTagList, storage.listOfTagsAffined);
+    research(dom.searchUstensils, storage.listOfUstensils , dom.ustensilesTagList, storage.listOfTagsAffined);
    
     //Dropdown : recherches affinées
     dropdown();
 
     //Filtre par Tags
-    tagListDisplay(listOfAppliances,appareilsTagList);
-    tagListDisplay(listOfUstensils,ustensilesTagList);
-    tagListDisplay(listOfIngredients,ingredientsTagList);
-    tags();
+    tagListDisplay(storage.listOfAppliances,dom.appareilsTagList);
+    tagListDisplay(storage.listOfUstensils,dom.ustensilesTagList);
+    tagListDisplay(storage.listOfIngredients,dom.ingredientsTagList);
+
+    tags(storage.listOfIngredients, dom.ingredientsTagList, storage.resultArray);
+    tags(storage.listOfUstensils, dom.ustensilesTagList, storage.resultArray);
+    tags(storage.listOfAppliances, dom.appareilsTagList, storage.resultArray);
 
 }
 
