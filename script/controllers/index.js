@@ -45,9 +45,11 @@ const pageLauncher = async() => {
     tagListDisplay(storage.listOfUstensils,dom.ustensilesTagList);
     tagListDisplay(storage.listOfIngredients,dom.ingredientsTagList);
 
-    tagEvents(storage.listOfIngredients, dom.ingredientsTagList);
-    tagEvents(storage.listOfUstensils, dom.ustensilesTagList);
-    tagEvents(storage.listOfAppliances, dom.appareilsTagList);
+    tagEvents(dom.ingredientsTagList);
+    tagEvents(dom.ustensilesTagList);
+    tagEvents(dom.appareilsTagList);
+
+    
 
 }
 

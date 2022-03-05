@@ -1,10 +1,11 @@
 import {dom} from "../constants/domElement.js";
+import {storage} from "../constants/dataStorage.js"
 let countOfListener = 0;
 /*--------------------------FUNCTION-----------------------------*/
 
-export const tagEvents = (array, liste) => {
+export const tagEvents = (liste) => {
     let elementList = Array.from(liste.children);
-
+    
     elementList.forEach((tags) => {
         tags.addEventListener("click", function e(){
             let div = document.createElement("div");
@@ -18,27 +19,24 @@ export const tagEvents = (array, liste) => {
             div.append(span);
             div.append(cross);
             
-            div.style.background = getComputedStyle(tags.parentElement).backgroundColor;
+            div.style.background = getComputedStyle(liste).backgroundColor;
             
-            array = array.filter(tag => tag != tags.innerText);
-            
+            // array = array.filter(tag => tag != tags.innerText);            
             if (countOfListener >= 6){
-                dom.tagSection.removeChild(div);
+                //empeche la création d'un nouveau tag
+                dom.tagSection.removeChild(div) 
             } else{
-                tags.remove();          
+                //retire le tag créé de la liste
+                this.remove();   
                 countOfListener++;
             }
-
             cross.addEventListener("click", () => {
-                let tag = document.createElement("p");
-                tag.innerText = cross.parentElement.children[0].innerText;
-
-                cross.parentElement.remove();
-                countOfListener--;
-                         
-            })
-            
-            
+                liste.insertAdjacentHTML("afterbegin", `<p>${cross.parentElement.children[0].innerText}</p>`);
+                let tag = liste.children[0];
+                tag.addEventListener("click", e);
+                cross.parentElement.remove();                
+                countOfListener--;                         
+            })           
         });
     });        
 };
