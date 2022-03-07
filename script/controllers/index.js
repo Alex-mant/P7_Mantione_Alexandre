@@ -49,8 +49,6 @@ const pageLauncher = async() => {
     tagEvents(dom.ustensilesTagList);
     tagEvents(dom.appareilsTagList);
 
-    
-
 }
 
 pageLauncher();

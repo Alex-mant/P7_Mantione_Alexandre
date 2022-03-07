@@ -119,6 +119,14 @@ span.tagName{
   right: 5px;
 }
 
+.selected {
+  display: none;
+}
+
+.unselected {
+  display: block;
+}
+
 
 /*------------------DROPDOWN------------------*/
 section#dropdown {

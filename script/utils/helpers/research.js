@@ -1,6 +1,7 @@
 /*-------------------IMPORT--------------------*/
-import { recipesDisplay } from "../../views/recipesDisplay.js";
-import { tagListDisplay } from "../../views/tagsListDisplay.js";
+import {recipesDisplay} from "../../views/recipesDisplay.js";
+import {tagListDisplay} from "../../views/tagsListDisplay.js";
+import { tagEvents } from "./tags.js";
 
 /*------------------FUNCTION--------------------*/
 export const research = (input, array, target, newArray) => {
@@ -11,20 +12,25 @@ export const research = (input, array, target, newArray) => {
         return inArray[target].match(regex);
       } else {
         return inArray.match(regex);
-      }
+      }      
     });
   }
-
+  
   function resultDisplay() {
     if (typeof (target) == "object"){
-        newArray = findRecipe(input.value, array);
-        tagListDisplay(newArray, target);
+      newArray = findRecipe(input.value, array);
+      tagListDisplay(newArray, target);
+      tagEvents(target)     
     }else{
-        newArray = findRecipe(input.value, newArray);
-        recipesDisplay(newArray);        
+      newArray = findRecipe(input.value, newArray);
+      recipesDisplay(newArray);        
     }
   }
 
   input.addEventListener("input", resultDisplay);
 };
+
 /*-------------------------------------------------------*/
+
+
+

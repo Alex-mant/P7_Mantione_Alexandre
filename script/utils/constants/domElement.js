@@ -3,7 +3,6 @@ export const dom = {
     dropDButton : document.querySelectorAll(".button"),
     recipeSection : document.querySelector("#recipe"),
     tagList : document.querySelectorAll(".liste-tags p"),
-    crossCloseFilter : document.querySelectorAll(".fa-times-circle"),
     tagSection : document.querySelector("#tag"),
     //tags
     ingredientsTagList : document.querySelector(".ingredients-tags"),
