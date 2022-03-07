@@ -5,6 +5,7 @@ let elementList;
 /*--------------------------FUNCTION-----------------------------*/
 
 const createTag = (tags) => {
+    dom.tagSection.style.display = "flex"
     let div = document.createElement("div");
     let span = document.createElement("span");
     let cross = document.createElement("i");
@@ -44,7 +45,11 @@ const closeTag = (element) => {
         if (item.innerText === element.path[1].children[0].innerText){
             item.classList.replace("selected","unselected")
         }
-    })  
+    })
+
+    if(dom.tagSection.children.length === 0){
+        dom.tagSection.style.display = "none"
+    }
 }
 
 export const tagEvents = (liste) => {

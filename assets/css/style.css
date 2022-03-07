@@ -85,7 +85,7 @@ section#search .search-icon {
 }
 /*------------------TAG-AREA------------------*/
 section#tag{
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   position: relative;
 
