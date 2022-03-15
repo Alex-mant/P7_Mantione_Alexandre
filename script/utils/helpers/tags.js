@@ -1,10 +1,12 @@
 import {dom} from "../constants/domElement.js";
+import {tagsSearch} from "./research.js";
+// import { recherche } from "./research.js";
 let countOfListener = 0;
-let elementList;
+let searchValue;
 
 /*--------------------------FUNCTION-----------------------------*/
 
-const createTag = (tags) => {
+const createTag = (tags, category) => {
     dom.tagSection.style.display = "flex"
     let div = document.createElement("div");
     let span = document.createElement("span");
@@ -15,6 +17,7 @@ const createTag = (tags) => {
     cross.classList.add("far","fa-times-circle");
 
     span.innerText = tags.path[0].innerText;
+    searchValue = span.innerText;
     
     dom.tagSection.appendChild(div);
     div.appendChild(span);
@@ -31,8 +34,10 @@ const createTag = (tags) => {
     }
     
     cross.addEventListener("click", function(cross){
-        closeTag(cross)
+        closeTag(cross);
+        tagsSearch(category);
     })
+    
     
 }
 
@@ -40,23 +45,26 @@ const closeTag = (element) => {
     const listOfTags = document.querySelectorAll(".liste-tags p")
     element.path[1].remove()
     countOfListener--;
-
+    
     listOfTags.forEach((item) => {
         if (item.innerText === element.path[1].children[0].innerText){
             item.classList.replace("selected","unselected")
         }
     })
-
+    
     if(dom.tagSection.children.length === 0){
         dom.tagSection.style.display = "none"
     }
 }
 
 export const tagEvents = (liste) => {
-    elementList = Array.from(liste.children);
-    
+    let elementList = Array.from(liste.children);
     elementList.forEach((tags) => {
-        tags.addEventListener("click", function (tags) {createTag(tags)});
-    });
-       
+        let currentCategory = tags.parentElement.classList[0].split("-")[0];
+        tags.addEventListener("click", function (tags) {
+            createTag(tags, currentCategory)
+            tagsSearch(currentCategory);
+        });        
+
+    });       
 };

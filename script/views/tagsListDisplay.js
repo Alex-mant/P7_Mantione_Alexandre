@@ -1,12 +1,8 @@
+import { tagEvents } from "../utils/helpers/tags.js";
+
 /*-------------------FUNCTION--------------------*/
 export const tagListDisplay = (array, tagList) => {
     tagList.innerHTML = array.map((el) =>
-    `<p>${el}</p>`).join("");
-
-    
-    // array.forEach(el => {
-    //     el.addEventListener("click", e)
-    // });
+    `<p class="tagFilter">${el}</p>`).join("");
+    tagEvents(tagList);
 }
-
-// voir pour le rafraichissement !

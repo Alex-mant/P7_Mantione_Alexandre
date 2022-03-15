@@ -1,0 +1,46 @@
+import {recipesDisplay} from "../../views/recipesDisplay.js";
+import { tagListDisplay } from "../../views/tagsListDisplay.js";
+import { storage } from "../constants/dataStorage.js";
+import { dom } from "../constants/domElement.js";
+import { setListOf } from "./setListOf.js";
+let newArray = [];
+let array = storage.allRecipes
+
+export const recherche = (classicOrTags, recherche, category ) => {
+  let keyWord = recherche
+  // let cate = category.toLowerCase();
+  // let subCat = cate.split("s")[0];
+
+  if(classicOrTags === "tags"){
+    array.forEach((firstLvlObject) => {
+      if (typeof firstLvlObject[cate] == "string"){
+        if (firstLvlObject[cate].includes(keyWord)){
+        return array = array.filter((item) => item[cate].includes(keyWord))
+        }
+      }else if (typeof firstLvlObject[cate][0] === "string"){    
+        return array = array.filter((item) => item[cate].includes(keyWord));
+      }else {
+        firstLvlObject[cate].forEach((item) => {
+          if(item[subCat].toLowerCase().includes(keyWord)){
+            newArray.push(firstLvlObject)
+          }     
+        })
+        array = newArray
+      }
+    
+      // console.log(ingArray);
+      array = Array.from(new Set(array))
+      recipesDisplay(array);
+      
+    })
+  }
+
+  else if (classicOrTags === "classic"){
+    array.filter(item => {
+      const regex = new RegExp(keyWord, "gi");
+      return array = item[category].match(regex);
+    })
+    recipesDisplay(newArray);
+  }
+
+}

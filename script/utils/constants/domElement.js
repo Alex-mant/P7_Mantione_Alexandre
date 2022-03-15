@@ -6,8 +6,8 @@ export const dom = {
     tagSection : document.querySelector("#tag"),
     //tags
     ingredientsTagList : document.querySelector(".ingredients-tags"),
-    appareilsTagList : document.querySelector(".appareils-tags"),
-    ustensilesTagList : document.querySelector(".ustensiles-tags"),
+    appareilsTagList : document.querySelector(".appliance-tags"),
+    ustensilesTagList : document.querySelector(".ustensils-tags"),
     //inputs
     searchRecipes : document.querySelector("input.search-recipes"),
     searchIngredients : document.querySelector("input.search-ingredients"),

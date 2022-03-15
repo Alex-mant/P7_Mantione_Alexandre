@@ -1,3 +1,5 @@
+import { dom } from "../utils/constants/domElement.js";
+
 /*-------------------DOM--------------------*/
 const recipeSection = document.querySelector("#recipe");
 
@@ -5,7 +7,7 @@ const recipeSection = document.querySelector("#recipe");
 export const recipesDisplay = (array) => {    
   recipeSection.innerHTML = array.map((recipe) =>
   `
-  <article class="recipe">
+  <article class="recipe dBlock">
     <div class="recipe__img">
       <i class="fas fa-utensils"> ${recipe.servings}</i>
     </div>

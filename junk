@@ -1,0 +1,35 @@
+/*-------------------IMPORT--------------------*/
+import {recipesDisplay} from "../../views/recipesDisplay.js";
+import {tagListDisplay} from "../../views/tagsListDisplay.js";
+import {tagEvents} from "./tags.js";
+
+/*------------------FUNCTION--------------------*/
+export const research = (input, array, ListOrTarget, newArray) => {
+  function findRecipe(recherche) {
+    return array.filter((inArray) => {
+      const regex = new RegExp(recherche, "gi");
+      if (typeof inArray[ListOrTarget] == "string") { //string = target
+        //affinage des recettes
+        return inArray[ListOrTarget].match(regex);
+      } else {
+        return inArray.match(regex);
+      }
+    });
+  }
+  
+  function resultDisplay() {
+    if (typeof (ListOrTarget) == "object"){ //object = list
+      newArray = findRecipe(input.value, array);
+      tagListDisplay(newArray, ListOrTarget);
+      tagEvents(ListOrTarget)
+    } else{
+      newArray = findRecipe(input.value, newArray);
+      recipesDisplay(newArray);        
+      //affinage des recettes
+    }
+  }
+
+  input.addEventListener("input", resultDisplay);
+};
+
+/*-------------------------------------------------------*/
