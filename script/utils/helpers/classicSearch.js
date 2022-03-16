@@ -9,8 +9,11 @@ export const classicSearch = (input, array, newArray) => {
     });
   }  
   const resultDisplay = () => {
-    newArray = findRecipe(input.value, newArray);
-    recipesDisplay(newArray); 
+    if (input.value.length >= 3 || input.value.length == 0 ){
+      newArray = findRecipe(input.value, newArray);
+      recipesDisplay(newArray); 
+    }
   }
+  
   input.addEventListener("input", resultDisplay);
 };
