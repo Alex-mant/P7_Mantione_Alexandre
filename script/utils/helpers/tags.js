@@ -1,6 +1,4 @@
 import {dom} from "../constants/domElement.js";
-import {tagsSearch} from "./research.js";
-// import { recherche } from "./research.js";
 let countOfListener = 0;
 let searchValue;
 
@@ -35,9 +33,8 @@ const createTag = (tags, category) => {
     
     cross.addEventListener("click", function(cross){
         closeTag(cross);
-        tagsSearch(category);
-    })
-    
+        //recherche
+    })   
     
 }
 
@@ -63,7 +60,7 @@ export const tagEvents = (liste) => {
         let currentCategory = tags.parentElement.classList[0].split("-")[0];
         tags.addEventListener("click", function (tags) {
             createTag(tags, currentCategory)
-            tagsSearch(currentCategory);
+            //recherche
         });        
 
     });       

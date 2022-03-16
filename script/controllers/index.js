@@ -13,7 +13,7 @@ import {setListOf} from "../utils/helpers/setListOf.js";
 //Views
 import {recipesDisplay} from "../views/recipesDisplay.js"
 import {tagListDisplay} from "../views/tagsListDisplay.js";
-import {classicSearch, tagsSearch} from "../utils/helpers/research.js";
+import {classicSearch} from "../utils/helpers/classicSearch.js";
 //Links
 const myJson = "data/recipes.json";
 //variables
@@ -27,26 +27,14 @@ const pageLauncher = async() => {
     //Création DOM pour chaques recettes
     recipesDisplay(myAllRecipes);
     setListOf(myAllRecipes)
-    dropdown();
-    
+    dropdown();    
     
     //Filtre par Tags
     tagListDisplay(storage.listOfAppliances, dom.appareilsTagList);
     tagListDisplay(storage.listOfUstensils, dom.ustensilesTagList);
     tagListDisplay(storage.listOfIngredients, dom.ingredientsTagList);
     
-    //Recherche
-    const allRecipesCards = document.querySelectorAll("article.recipe h2");
-    const ingredientsTags = document.querySelectorAll(".ingredients-tags p");
-    const appareilsTags = document.querySelectorAll(".appliance-tags p");
-    const ustensilesTags = document.querySelectorAll(".ustensils-tags p");
-
-    
-    classicSearch(dom.searchRecipes, allRecipesCards, "classic");
-    classicSearch(dom.searchIngredients, ingredientsTags, "tag");
-    classicSearch(dom.searchAppliances, appareilsTags, "tag");
-    classicSearch(dom.searchUstensils, ustensilesTags, "tag");
-    
+    //Recherche    
+    classicSearch(dom.searchRecipes,storage.allRecipes, storage.resultArray)    
 }
-
 pageLauncher();
