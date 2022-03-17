@@ -1,8 +1,8 @@
 /*-------------------IMPORT--------------------*/
 import {recipesDisplay} from "../../views/recipesDisplay.js";
+import { storage } from "../constants/dataStorage.js";
 /*------------------FUNCTION--------------------*/
-export const classicSearch = (input, array, newArray) => {
-  
+export const classicSearch = (input, array) => {
   const findRecipe = (regex) => {
     let storage = [];
     array.forEach(element => {    
@@ -15,14 +15,15 @@ export const classicSearch = (input, array, newArray) => {
     });
     return storage;  
   }
-
-  const resultDisplay = () => {
-    let inputValue = new RegExp(input.value, "gi");
-    if (input.value.length >= 3 || input.value.length < 1){
-      newArray = findRecipe(inputValue);
-      recipesDisplay(newArray); 
-    }
-  }
   
-  input.addEventListener("input", resultDisplay);
+  input.addEventListener("input", () =>{
+    let inputValue = new RegExp(input.value, "gi");
+    if (input.value.length >= 3){
+      storage.resultArray = findRecipe(inputValue);
+      recipesDisplay(storage.resultArray); 
+    }else if (input.value.length < 1){
+      storage.resultArray = findRecipe(inputValue);
+      recipesDisplay(storage.resultArray); 
+    }
+  });
 };
