@@ -16,6 +16,5 @@ export const arrayDoubleTreatment = (array, newArray, target) => {
         }
     });   
     
-    newArray = new Set(newArray);
-    return Array.from(newArray);
+   return newArray = Array.from(new Set(newArray));
 }

@@ -14,19 +14,20 @@ import {setListOf} from "../utils/helpers/setListOf.js";
 import {recipesDisplay} from "../views/recipesDisplay.js"
 import {tagListDisplay} from "../views/tagsListDisplay.js";
 import {classicSearch} from "../utils/helpers/classicSearch.js";
+import { allRecipesTreatment } from "../utils/helpers/allRecipesTreatment.js";
 //Links
 const myJson = "data/recipes.json";
 //variables
-let myAllRecipes = storage.allRecipes
 
 /*--Charge la page entière avec tous les modules--*/
 const pageLauncher = async() => {
     
     //Traitement des données (JSON) et stockage
     await fetchData(storage.allRecipes, "recipes", myJson);
+    allRecipesTreatment(storage.allRecipes);
     //Création DOM pour chaques recettes
-    recipesDisplay(myAllRecipes);
-    setListOf(myAllRecipes)
+    recipesDisplay(storage.allRecipes);
+    setListOf(storage.allRecipes)
     dropdown();    
     
     //Filtre par Tags
@@ -35,6 +36,6 @@ const pageLauncher = async() => {
     tagListDisplay(storage.listOfIngredients, dom.ingredientsTagList);
     
     //Recherche    
-    classicSearch(dom.searchRecipes,storage.allRecipes, storage.resultArray)    
+    classicSearch(dom.searchRecipes, storage.allRecipes, storage.resultArray)
 }
 pageLauncher();

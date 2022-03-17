@@ -2,15 +2,24 @@
 import {recipesDisplay} from "../../views/recipesDisplay.js";
 /*------------------FUNCTION--------------------*/
 export const classicSearch = (input, array, newArray) => {
-  const findRecipe = (recherche) => {
-    return array.filter((inArray) => {
-      const regex = new RegExp(recherche, "gi");
-        return inArray["name"].match(regex);
+  
+  const findRecipe = (regex) => {
+    let storage = [];
+    array.forEach(element => {    
+      element["allIngredients"].forEach(el => {
+        if(el.match(regex) || element["name"].match(regex)){
+          storage.push(element)
+          storage = Array.from(new Set(storage));
+        }
+      });
     });
-  }  
+    return storage;  
+  }
+
   const resultDisplay = () => {
-    if (input.value.length >= 3 || input.value.length == 0 ){
-      newArray = findRecipe(input.value, newArray);
+    let inputValue = new RegExp(input.value, "gi");
+    if (input.value.length >= 3 || input.value.length < 1){
+      newArray = findRecipe(inputValue);
       recipesDisplay(newArray); 
     }
   }

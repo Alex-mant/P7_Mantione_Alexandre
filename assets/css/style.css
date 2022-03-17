@@ -230,13 +230,13 @@ section#recipe {
   display: grid;
   grid-template-columns: 30% 30% 30%;
   grid-column-gap: 55px;
-  grid-row-gap: 50px;
 }
 section#recipe article.recipe {
   width: 380px;
   border-radius: 5px;
   overflow: hidden;
   height: 364px;
+  margin-bottom: 45px;
 }
 section#recipe .recipe__img {
   position: relative;

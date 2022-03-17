@@ -33,10 +33,35 @@ const createTag = (tags, category) => {
     
     cross.addEventListener("click", function(cross){
         closeTag(cross);
+
         //recherche
     })   
     
 }
+
+const searchWithT = () => {
+    let searchTValue = dom.tagSection.children;
+
+    searchTValue.forEach(tag => {
+        
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const closeTag = (element) => {
     const listOfTags = document.querySelectorAll(".liste-tags p")
@@ -60,7 +85,7 @@ export const tagEvents = (liste) => {
         let currentCategory = tags.parentElement.classList[0].split("-")[0];
         tags.addEventListener("click", function (tags) {
             createTag(tags, currentCategory)
-            //recherche
+            searchWithT()
         });        
 
     });       
