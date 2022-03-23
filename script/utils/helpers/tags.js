@@ -1,7 +1,7 @@
-import { recipesDisplay } from "../../views/recipesDisplay.js";
 import { storage } from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
-import { filterRecipes } from "./research.js";
+import {research } from "./research.js";
+
 let countOfListener = 0;
 let searchValue;
 /*--------------------------FUNCTION-----------------------------*/
@@ -32,12 +32,17 @@ const createTag = (tags, category) => {
         tags.path[0].classList.add("selected")       
         countOfListener++;
     }
+
+    let searchBarFilter = document.querySelector("input");
+    searchBarFilter.value += " "+searchValue;
     
     cross.addEventListener("click", function(cross){
         closeTag(cross);
-        searchWithTags()   
-    })    
-    
+        let thisValue = cross.path[1].innerText
+        searchBarFilter.value = searchBarFilter.value.replace(thisValue,"")
+        research(storage.allRecipes, "searchTagFilters");
+    })
+
 }
 
 const closeTag = (element) => {
@@ -61,20 +66,9 @@ export const tagEvents = (liste) => {
     elementList.forEach((tags) => {
         let currentCategory = tags.parentElement.classList[0].split("-")[0];
         tags.addEventListener("click", function (tags) {
-            createTag(tags, currentCategory )
-            searchWithTags(currentCategory);
+            createTag(tags, currentCategory)
+            research(storage.allRecipes, "searchTagFilters");            
         });        
 
     });       
 };
-
-
-const searchWithTags = (category) => {
-    if (category === "ingredients"){
-        filterRecipes(storage.allRecipes, {ingredientsFilters: searchValue})
-    }else if (category === "appliance"){
-        filterRecipes(storage.allRecipes, {applianceFilters: searchValue})
-    }else if (category === "ustensils"){
-        filterRecipes(storage.allRecipes, {ustensilsFilters: searchValue})
-    }
-}
