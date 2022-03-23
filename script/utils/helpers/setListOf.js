@@ -1,11 +1,21 @@
-import { storage } from "../constants/dataStorage.js";
-import { arrayDoubleTreatment } from "./arrayDouble.js";
+import {storage} from "../constants/dataStorage.js";
+import {keepUniquesByLowerCase} from "./tools.js";
 
-export const setListOf = (array) => {
-    //Traitement de la liste des appareils
-    storage.listOfAppliances = arrayDoubleTreatment(array, storage.listOfAppliances, "appliance");
-    //Traitement de la liste des ustensiles
-    storage.listOfUstensils = arrayDoubleTreatment(array, storage.listOfUstensils, "ustensils");
-    //Traitement de la liste des ingredients
-    storage.listOfIngredients = arrayDoubleTreatment(array, storage.listOfIngredients, "ingredients");
+export const setListOf = (recipeList) => {
+
+    //INGREDIENTS
+    const retreiveAllIngredientsFromRecipeList = (recipeList) => recipeList.map((recipe) => recipe.ingredients.map(ig => ig.ingredient)).flat()
+
+    storage.listOfIngredients = keepUniquesByLowerCase(retreiveAllIngredientsFromRecipeList(recipeList));
+
+    //USTENSILS
+    const retreiveAllUstensilsFromRecipeList = (recipeList) => recipeList.map(recipe => recipe.ustensils).flat()
+
+    storage.listOfUstensils = keepUniquesByLowerCase(retreiveAllUstensilsFromRecipeList(recipeList));
+
+    //APPLIANCES
+    const retreiveAllAppliancesFromRecipeList = (recipeList => recipeList.map(recipe => recipe.appliance));
+
+    storage.listOfAppliances = keepUniquesByLowerCase(retreiveAllAppliancesFromRecipeList(recipeList));
+
 }

@@ -1,7 +1,6 @@
 import { recipesDisplay } from "../../views/recipesDisplay.js";
 import { storage } from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
-import { classicSearch } from "./classicSearch.js";
 let countOfListener = 0;
 let searchValue;
 
@@ -36,30 +35,15 @@ const createTag = (tags, category) => {
     
     cross.addEventListener("click", function(cross){
         closeTag(cross);
-        searchWithT()
+        searchWithTags()        
         //recherche
     })   
     
 }
 
-const searchWithT = () => {
-    let searchTValue = Array.from(dom.tagSection.children);
-    let locStorage = [];
-
-    searchTValue.forEach(tag => {
-        let tagValue = tag.innerText.toLowerCase();
-        storage.resultArray.forEach(el =>{
-            el.allIngredients.forEach(ing => {
-               if(ing.toLowerCase().includes(tagValue)){
-                locStorage.push(el);
-               }
-            })            
-        })
-        recipesDisplay(locStorage)
-    })
+const searchWithTags = () => {
+   
 }
-
-
 
 const closeTag = (element) => {
     const listOfTags = document.querySelectorAll(".liste-tags p")
@@ -83,7 +67,7 @@ export const tagEvents = (liste) => {
         let currentCategory = tags.parentElement.classList[0].split("-")[0];
         tags.addEventListener("click", function (tags) {
             createTag(tags, currentCategory)
-            searchWithT()
+            searchWithTags()
         });        
 
     });       
