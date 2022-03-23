@@ -1,8 +1,11 @@
 /*-------------------IMPORT--------------------*/
-import { createPage } from "../../controllers/createPage.js";
+import {setListOfTagsDisplay} from "../../controllers/setListOfTags.js";
 import {recipesDisplay} from "../../views/recipesDisplay.js";
-import {storage} from "../constants/dataStorage.js";
+import {storage as recipeList, storage} from "../constants/dataStorage.js";
+import { dom } from "../constants/domElement.js";
+import { setListOf } from "./setListOf.js";
 /*------------------FUNCTION--------------------*/
+let filteredResult;
 
 const buildSearchRegex = (search) => {
   const searchWords = search
@@ -17,33 +20,52 @@ const prepareSearchBoxString = (recipe) => {
   return recipe;
 }
 
-const filterRecipes = (recipeList, {searchBarFilters, ingredientsFilter, applianceFilter, ustensilsFilter}) => {
-  let filteredRecipes = recipeList;
-  
+export const filterRecipes = (recipeList, {searchBarFilters, ingredientsFilters, applianceFilters, ustensilsFilters}) => {
+  filteredResult = recipeList;
+  let searchRegex;
+
   //Fast research
   if(searchBarFilters){
-    const searchRegex = buildSearchRegex(searchBarFilters);
+    searchRegex = buildSearchRegex(searchBarFilters);
+    filteredResult.map(prepareSearchBoxString);
+    filteredResult = filteredResult.filter((recipe) => searchRegex.test(recipe.searchBoxString));
+    setListOf(filteredResult);
+    setListOfTagsDisplay();
   }  
   //Tags research
-  if(ingredientsFilter){
-    const searchRegex = buildSearchRegex(ingredientsFilter);
+  if(ingredientsFilters){
+    console.log("ingredients tag");
+    searchRegex = buildSearchRegex(ingredientsFilters)
+    filteredResult = filteredResult.filter((recipe) => searchRegex.test(recipe.allIngredients))
+    setListOf(filteredResult);
+    setListOfTagsDisplay();
   }
-  if(applianceFilter){
-    const searchRegex = buildSearchRegex(applianceFilter);
+  if(applianceFilters){
+    console.log("appliances tag");
+    searchRegex = buildSearchRegex(applianceFilters)
+    filteredResult = filteredResult.filter((recipe) => searchRegex.test(recipe.appliance))
+    setListOf(filteredResult);
+    setListOfTagsDisplay();
   }
-  if(ustensilsFilter){
-    const searchRegex = buildSearchRegex(ustensilsFilter);
+  if(ustensilsFilters){
+    console.log("ustensils tag");
+    searchRegex = buildSearchRegex(ustensilsFilters)
+    filteredResult = filteredResult.filter((recipe) => searchRegex.test(recipe.ustensils))
+    setListOf(filteredResult);
+    setListOfTagsDisplay();
   }
   
-  filteredRecipes.map(prepareSearchBoxString);
-  filteredRecipes = filteredRecipes.filter((recipe) => searchRegex.test(recipe.searchBoxString));
-  return filteredRecipes;
+  
+  recipesDisplay(filteredResult)
+  return storage.resultArray = filteredResult
 }
 
 export const research = (recipeList) => {
-  let mainSeachBar = document.querySelector("input")
-  mainSeachBar.addEventListener("input", () => {
-    storage.resultArray = filterRecipes(recipeList, {searchBarFilters: input.value})
-    recipesDisplay(storage.resultArray)
-  })
+  let fastSearchBar = document.querySelector("input");
+
+  fastSearchBar.addEventListener("input", () => {
+    if(fastSearchBar.value.length > 2 || fastSearchBar.value.length == 0){
+      filterRecipes(recipeList, {searchBarFilters: fastSearchBar.value})
+    }
+  }) 
 };

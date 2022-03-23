@@ -8,6 +8,7 @@ import {recipesDisplay} from "../views/recipesDisplay.js"
 import {tagListDisplay} from "../views/tagsListDisplay.js";
 import {research} from "../utils/helpers/research.js";
 import { allRecipesTreatment } from "../utils/helpers/allRecipesTreatment.js";
+import { setListOfTagsDisplay } from "./setListOfTags.js";
 
 
 export const createPage = (storage, dom) => {
@@ -18,10 +19,8 @@ export const createPage = (storage, dom) => {
     dropdown();    
     
     //Filtre par Tags
-    tagListDisplay(storage.listOfAppliances, dom.appareilsTagList);
-    tagListDisplay(storage.listOfUstensils, dom.ustensilesTagList);
-    tagListDisplay(storage.listOfIngredients, dom.ingredientsTagList);
-    
+    setListOfTagsDisplay();
+
     //Recherche    
     research(storage.allRecipes)
 }
