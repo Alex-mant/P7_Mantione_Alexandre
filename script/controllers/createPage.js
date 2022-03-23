@@ -9,6 +9,7 @@ import {tagListDisplay} from "../views/tagsListDisplay.js";
 import {research} from "../utils/helpers/research.js";
 import { allRecipesTreatment } from "../utils/helpers/allRecipesTreatment.js";
 import { setListOfTagsDisplay } from "./setListOfTags.js";
+import { searchSpecificTag } from "../utils/helpers/tags.js";
 
 
 export const createPage = (storage, dom) => {
@@ -23,4 +24,5 @@ export const createPage = (storage, dom) => {
 
     //Recherche    
     research(storage.allRecipes)
+    searchSpecificTag();
 }

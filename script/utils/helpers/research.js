@@ -1,8 +1,9 @@
 /*-------------------IMPORT--------------------*/
 import {setListOfTagsDisplay} from "../../controllers/setListOfTags.js";
 import {recipesDisplay} from "../../views/recipesDisplay.js";
-import {storage as recipeList, storage} from "../constants/dataStorage.js";
-import { setListOf } from "./setListOf.js";
+import {storage} from "../constants/dataStorage.js";
+import { dom } from "../constants/domElement.js";
+import {setListOf} from "./setListOf.js";
 /*------------------FUNCTION--------------------*/
 let filteredResult;
 
@@ -14,6 +15,9 @@ const autoRemoveTagsWhenModifySearchBar = () => {
       tag.remove()
     }    
   });
+  if(dom.tagSection.children.length === 0){
+    dom.tagSection.style.display = "none"
+  }
 }
 
 const buildSearchRegex = (search) => {

@@ -1,8 +1,9 @@
+import { createPage } from "../../controllers/createPage.js";
 import {storage} from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
 import {research } from "./research.js";
 
-let countOfListener = 0;
+const specificsInputs = document.querySelectorAll(".text-btn")
 let searchValue;
 /*--------------------------FUNCTION-----------------------------*/
 
@@ -25,14 +26,6 @@ const createTag = (tags) => {
     
     div.style.background = getComputedStyle(tags.path[1]).backgroundColor;
     
-    if (countOfListener >= 6){
-        div.remove();
-    }else{        
-        tags.path[0].classList.remove("unselected")       
-        tags.path[0].classList.add("selected")       
-        countOfListener++;
-    }
-
     let searchBarFilter = document.querySelector("input");
     searchBarFilter.value += " "+searchValue;
     
@@ -45,17 +38,26 @@ const createTag = (tags) => {
 
 }
 
+export const searchSpecificTag = () => {
+    specificsInputs.forEach(sInput => {
+        sInput.addEventListener("input", () => {
+            let search = new RegExp(sInput.value, 'gi');
+            Array.from(sInput.parentElement.parentElement.children[1].children).forEach(el => {
+                if(search.test(el.innerText)){
+                    el.classList.remove("dNone");
+                }else{
+                    el.classList.add("dNone")
+                }
+            })            
+        })
+    })
+}
+
+
 const closeTag = (element) => {
     const listOfTags = document.querySelectorAll(".liste-tags p")
     element.path[1].remove()
-    countOfListener--;
-    
-    listOfTags.forEach((item) => {
-        if (item.innerText === element.path[1].children[0].innerText){
-            item.classList.replace("selected","unselected")
-        }
-    })
-    
+        
     if(dom.tagSection.children.length === 0){
         dom.tagSection.style.display = "none"
     }
@@ -67,6 +69,9 @@ export const tagEvents = (liste) => {
         tags.addEventListener("click", function (tags) {
             createTag(tags)
             research(storage.allRecipes, "searchTagFilters");
+            specificsInputs.forEach(inputs => {
+                inputs.value = "";
+            })
         });        
 
     });       
