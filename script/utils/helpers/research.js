@@ -6,6 +6,16 @@ import { setListOf } from "./setListOf.js";
 /*------------------FUNCTION--------------------*/
 let filteredResult;
 
+const autoRemoveTagsWhenModifySearchBar = () => {
+  let fastSearchBar = document.querySelector("input")
+  let alltags = document.querySelectorAll(".tag")
+  alltags.forEach(tag => {
+    if(tag && !fastSearchBar.value.includes(tag.innerText)){
+      tag.remove()
+    }    
+  });
+}
+
 const buildSearchRegex = (search) => {
   const searchWords = search
   .split(' ')
@@ -29,7 +39,7 @@ export const filterRecipes = (recipeList, {searchBarFilters}) => {
     filteredResult.map(prepareSearchBoxString);
     filteredResult = filteredResult.filter((recipe) => searchRegex.test(recipe.searchBoxString));
   }  
-
+  autoRemoveTagsWhenModifySearchBar();
   
   recipesDisplay(filteredResult)
   setListOf(filteredResult);

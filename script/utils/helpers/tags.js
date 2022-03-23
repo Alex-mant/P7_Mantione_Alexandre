@@ -1,4 +1,4 @@
-import { storage } from "../constants/dataStorage.js";
+import {storage} from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
 import {research } from "./research.js";
 
@@ -6,7 +6,7 @@ let countOfListener = 0;
 let searchValue;
 /*--------------------------FUNCTION-----------------------------*/
 
-const createTag = (tags, category) => {
+const createTag = (tags) => {
     dom.tagSection.style.display = "flex"
     let div = document.createElement("div");
     let span = document.createElement("span");
@@ -64,10 +64,9 @@ const closeTag = (element) => {
 export const tagEvents = (liste) => {
     let elementList = Array.from(liste.children);
     elementList.forEach((tags) => {
-        let currentCategory = tags.parentElement.classList[0].split("-")[0];
         tags.addEventListener("click", function (tags) {
-            createTag(tags, currentCategory)
-            research(storage.allRecipes, "searchTagFilters");            
+            createTag(tags)
+            research(storage.allRecipes, "searchTagFilters");
         });        
 
     });       
