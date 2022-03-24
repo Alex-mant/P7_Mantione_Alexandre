@@ -2,12 +2,13 @@ import {storage} from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
 import { LockUnlockEmptyList } from "./dropdown.js";
 import {research } from "./research.js";
+import { pathForMozilla } from "./tools.js";
 
 const specificsInputs = document.querySelectorAll(".text-btn")
 let searchValue;
 /*--------------------------FUNCTION-----------------------------*/
-
 const createTag = (tags) => {
+    pathForMozilla();
     dom.tagSection.style.display = "flex"
     let div = document.createElement("div");
     let span = document.createElement("span");
