@@ -53,7 +53,7 @@ export const filterRecipes = (recipeList, {searchBarFilters}) => {
 
 export const research = (recipeList, searchTagFilters ) => {
   let fastSearchBar = document.querySelector("input");
-  fastSearchBar.addEventListener("input", () => {
+  fastSearchBar.addEventListener("change", () => {
     if(fastSearchBar.value.length > 2 || fastSearchBar.value.length == 0){
       filterRecipes(recipeList, {searchBarFilters: fastSearchBar.value})
     }

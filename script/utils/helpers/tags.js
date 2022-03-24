@@ -1,6 +1,6 @@
-import { createPage } from "../../controllers/createPage.js";
 import {storage} from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
+import { LockUnlockEmptyList } from "./dropdown.js";
 import {research } from "./research.js";
 
 const specificsInputs = document.querySelectorAll(".text-btn")
@@ -34,8 +34,10 @@ const createTag = (tags) => {
         let thisValue = cross.path[1].innerText
         searchBarFilter.value = searchBarFilter.value.replace(thisValue,"")
         research(storage.allRecipes, "searchTagFilters");
+        LockUnlockEmptyList();
     })
 
+    
 }
 
 export const searchSpecificTag = () => {
@@ -55,9 +57,9 @@ export const searchSpecificTag = () => {
 
 
 const closeTag = (element) => {
-    const listOfTags = document.querySelectorAll(".liste-tags p")
+
     element.path[1].remove()
-        
+    
     if(dom.tagSection.children.length === 0){
         dom.tagSection.style.display = "none"
     }
@@ -72,7 +74,8 @@ export const tagEvents = (liste) => {
             specificsInputs.forEach(inputs => {
                 inputs.value = "";
             })
+            LockUnlockEmptyList();
         });        
-
+        
     });       
 };

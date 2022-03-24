@@ -16,10 +16,11 @@ export const createPage = (storage, dom) => {
     allRecipesTreatment(storage.allRecipes);
     //Création DOM pour chaques recettes
     recipesDisplay(storage.allRecipes);
-    setListOf(storage.allRecipes)
+    
     dropdown();    
     
     //Filtre par Tags
+    setListOf(storage.allRecipes)
     setListOfTagsDisplay();
 
     //Recherche    
