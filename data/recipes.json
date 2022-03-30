@@ -1379,7 +1379,7 @@
             "id": 39,
             "name": "Crumble aux pommes",
             "image": "assets/img/Crumbleauxpommes.jpg",
-            "servings": 40,
+            "servings": 4,
             "ingredients": [
                 {
                     "ingredient": "Pomme",
