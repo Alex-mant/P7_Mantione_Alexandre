@@ -1786,17 +1786,16 @@ let result = [];
 
 function filterRecipes(inputValue){
 	const searchWords = inputValue.split(' ')
-    let regex;
+  let regex = '';
 
-    for (let index = 0; index < searchWords.length; index++) {
-        const word = searchWords[index];
-        regex = [];
-        //map
-        
-        new RegExp(`(?=.*${word}).*`,'i');
+  for (let index = 0; index < searchWords.length; index++) {
+    const word = searchWords[index];
+    if(word.length > 2){
+      regex += `(?=.*${word})`
     }
-
-
+  }
+  regex += '.*' 
+  
   result.length = 0;
   for(let index = 0; index < allRecipes.length; index++) {
     const element = allRecipes[index];
@@ -1805,9 +1804,8 @@ function filterRecipes(inputValue){
       const subElement = element.ingredients[index];
       element.allIngredients.push(subElement.ingredient);    
     }
-    element.searchBoxString = `${element.name} ${element.description} ${element.allIngredients}`.toLowerCase(); 
-
-    if(regex.test(element.searchBoxString)){
+    
+    if(new RegExp(regex,'i').test(`${element.name} ${element.description} ${element.allIngredients}`.toLowerCase())){
       result.push(element);
     }
     result = Array.from(new Set(result));
@@ -1822,3 +1820,5 @@ export function research(){
     }
   })
 }
+
+research()
