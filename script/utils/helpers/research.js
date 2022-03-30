@@ -63,6 +63,7 @@ export const filterRecipes = (recipes, { nameDescFilter, ingredientsFilter, appl
   appFilter = Array.from(document.querySelectorAll(".appFilter"));
   ingFilter = Array.from(document.querySelectorAll(".ingFilter"));
   eventTags();
+  removeTagsinTagList()
 
   return {
     matchingRecipes,
@@ -109,7 +110,7 @@ const addFilter = (filterList) => {
         appliancesFilter: appSearchValue,
         ustensilsFilter: ustSearchValue,
       });
-      
+
       closeIngFilter = Array.from(document.querySelectorAll(".ingredientsFilters i"));
       closeAppFilter = Array.from(document.querySelectorAll(".appliancesFilters i"));
       closeUstFilter = Array.from(document.querySelectorAll(".ustensilsFilters i"));
