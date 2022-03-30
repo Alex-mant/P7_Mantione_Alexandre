@@ -247,7 +247,25 @@ section#recipe .recipe__img i{
   position: absolute;
   bottom: 10px;
   right: 10px;
+  background-color: #ffff;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
 }
+.fa-utensils:before {
+  content: "\f2e7";
+  position: absolute;
+  left: 8px;
+  top: 15px;
+}
+
+span.serving{
+  position: absolute;
+  top: 140px;
+  right: 16px;
+  font-weight: bolder;
+}
+
 section#recipe .recipe__container {
   background-color: #e7e7e7;
   padding: 20px;
