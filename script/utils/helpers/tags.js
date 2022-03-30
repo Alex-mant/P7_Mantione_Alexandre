@@ -1,15 +1,12 @@
-import {storage} from "../constants/dataStorage.js";
 import {dom} from "../constants/domElement.js";
-import { LockUnlockEmptyList } from "./dropdown.js";
-import {research } from "./research.js";
-import { pathForMozilla } from "./tools.js";
+import {pathForMozilla} from "./tools.js";
 
-const specificsInputs = document.querySelectorAll(".text-btn")
-let searchValue;
+const specificsInputs = document.querySelectorAll(".text-btn");
+
 /*--------------------------FUNCTION-----------------------------*/
 const createTag = (tags) => {
     pathForMozilla();
-    dom.tagSection.style.display = "flex"
+    dom.tagSection.style.display = "flex";
     let div = document.createElement("div");
     let span = document.createElement("span");
     let cross = document.createElement("i");
@@ -19,26 +16,26 @@ const createTag = (tags) => {
     cross.classList.add("far","fa-times-circle");
     
     span.innerText = tags.path[0].innerText;
-    searchValue = span.innerText;
+
+    if(tags.path[1].classList.contains("ingredients-tags")){
+        div.classList.add("ingredientsFilters");
+    }if(tags.path[1].classList.contains("appliance-tags")){
+        div.classList.add("appliancesFilters");
+    }if(tags.path[1].classList.contains("ustensils-tags")){
+        div.classList.add("ustensilsFilters");
+    }
+    
+    
     
     dom.tagSection.appendChild(div);
     div.appendChild(span);
     div.appendChild(cross);   
     
     div.style.background = getComputedStyle(tags.path[1]).backgroundColor;
-    
-    let searchBarFilter = document.querySelector("input");
-    searchBarFilter.value += " "+searchValue;
-    
+        
     cross.addEventListener("click", function(cross){
         closeTag(cross);
-        let thisValue = cross.path[1].innerText
-        searchBarFilter.value = searchBarFilter.value.replace(thisValue,"")
-        research(storage.allRecipes, "searchTagFilters");
-        LockUnlockEmptyList();
-    })
-
-    
+    })    
 }
 
 export const searchSpecificTag = () => {
@@ -56,11 +53,8 @@ export const searchSpecificTag = () => {
     })
 }
 
-
 const closeTag = (element) => {
-
-    element.path[1].remove()
-    
+    element.path[1].remove()    
     if(dom.tagSection.children.length === 0){
         dom.tagSection.style.display = "none"
     }
@@ -70,13 +64,7 @@ export const tagEvents = (liste) => {
     let elementList = Array.from(liste.children);
     elementList.forEach((tags) => {
         tags.addEventListener("click", function (tags) {
-            createTag(tags)
-            research(storage.allRecipes, "searchTagFilters");
-            specificsInputs.forEach(inputs => {
-                inputs.value = "";
-            })
-            LockUnlockEmptyList();
-        });        
-        
+            createTag(tags);
+        }); 
     });       
 };

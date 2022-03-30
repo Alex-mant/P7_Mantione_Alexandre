@@ -44,35 +44,34 @@ export const dropdown = () => {
 
     });
   });
-
 }
 
 
 
-const lockThisTagListFilter = (typeList) => {
-  let thisArrow = typeList.parentElement.querySelector("img");
+// const lockThisTagListFilter = (typeList) => {
+//   let thisArrow = typeList.parentElement.querySelector("img");
 
-  if(typeList.children.length == 0){
-    thisArrow.classList.replace("returned", "not-returned");
-    thisArrow.style.pointerEvents = "none";
-    typeList.parentElement.querySelector("button").style.width = "170px";
-    typeList.parentElement.querySelector("button").style.borderRadius = "5px";
-    typeList.parentElement.querySelector("button").style.backgroundColor = "#80808073";
-    typeList.parentElement.querySelector(".liste-tags").style.display = "none";
-    typeList.parentElement.querySelector("input").disabled = true;
-  }else{
-    thisArrow.style.pointerEvents = "";
-    typeList.parentElement.querySelector("button").style.backgroundColor = getComputedStyle(typeList.parentElement.querySelector(".liste-tags")).backgroundColor;
-    typeList.parentElement.querySelector("input").disabled = false;
-  } 
-}
+//   if(typeList.children.length == 1){
+//     thisArrow.classList.replace("returned", "not-returned");
+//     thisArrow.style.pointerEvents = "none";
+//     typeList.parentElement.querySelector("button").style.width = "170px";
+//     typeList.parentElement.querySelector("button").style.borderRadius = "5px";
+//     typeList.parentElement.querySelector("button").style.backgroundColor = "#80808073";
+//     typeList.parentElement.querySelector(".liste-tags").style.display = "none";
+//     typeList.parentElement.querySelector("input").disabled = true;
+//   }else{
+//     thisArrow.style.pointerEvents = "";
+//     typeList.parentElement.querySelector("button").style.backgroundColor = getComputedStyle(typeList.parentElement.querySelector(".liste-tags")).backgroundColor;
+//     typeList.parentElement.querySelector("input").disabled = false;
+//   } 
+// }
 
-export const LockUnlockEmptyList = () => {
-  let ingredientsList = dom.ingredientsTagList;
-  let applianceList = dom.appareilsTagList;
-  let ustensilsList =  dom.ustensilesTagList;
+// export const LockUnlockEmptyList = () => {
+//   // let ingredientsList = dom.ingredientsTagList;
+//   // let applianceList = dom.appareilsTagList;
+//   // let ustensilsList =  dom.ustensilesTagList;
 
-  lockThisTagListFilter(ingredientsList);
-  lockThisTagListFilter(applianceList);
-  lockThisTagListFilter(ustensilsList);
-}
+//   // lockThisTagListFilter(ingredientsList);
+//   // lockThisTagListFilter(applianceList);
+//   // lockThisTagListFilter(ustensilsList);
+// }
