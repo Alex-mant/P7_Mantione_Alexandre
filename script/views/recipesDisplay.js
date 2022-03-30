@@ -8,9 +8,9 @@ const createRecipeHtml = (recipe) =>
   `
   <article class="recipe dBlock">
     <div class="recipe__img" style='background: url(${recipe.image});'>
-      <i class="fas fa-utensils"></i>
-      <span class="serving">${recipe.servings}</span>
-          </div>
+      <i class="fas fa-utensils"><span class="serving">${recipe.servings}</span></i>
+      
+    </div>
     <div class="recipe__container">
       <div class="recipe__header">
         <h2>${recipe.name}</h2>
