@@ -1,4 +1,5 @@
 import {dom} from "../constants/domElement.js";
+import { LockUnlockEmptyList } from "./dropdown.js";
 import {pathForMozilla} from "./tools.js";
 
 const specificsInputs = document.querySelectorAll(".text-btn");
@@ -35,6 +36,8 @@ const createTag = (tags) => {
         
     cross.addEventListener("click", function(cross){
         closeTag(cross);
+        LockUnlockEmptyList(
+        )
     })    
 }
 
@@ -65,6 +68,7 @@ export const tagEvents = (liste) => {
     elementList.forEach((tags) => {
         tags.addEventListener("click", function (tags) {
             createTag(tags);
+            LockUnlockEmptyList()
         }); 
     });       
 };

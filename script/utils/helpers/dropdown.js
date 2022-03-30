@@ -66,12 +66,12 @@ export const dropdown = () => {
 //   } 
 // }
 
-// export const LockUnlockEmptyList = () => {
-//   // let ingredientsList = dom.ingredientsTagList;
-//   // let applianceList = dom.appareilsTagList;
-//   // let ustensilsList =  dom.ustensilesTagList;
+export const LockUnlockEmptyList = () => {
+  // let ingredientsList = dom.ingredientsTagList;
+  // let applianceList = dom.appareilsTagList;
+  // let ustensilsList =  dom.ustensilesTagList;
 
-//   // lockThisTagListFilter(ingredientsList);
-//   // lockThisTagListFilter(applianceList);
-//   // lockThisTagListFilter(ustensilsList);
-// }
+  // lockThisTagListFilter(ingredientsList);
+  // lockThisTagListFilter(applianceList);
+  // lockThisTagListFilter(ustensilsList);
+}
