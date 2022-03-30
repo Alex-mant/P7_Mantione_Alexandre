@@ -16,12 +16,6 @@ const nameDescFilterApply = (recipes, nameDescFilter) => {
   );
 };
 
-//INGREDIENTS
-const ingredientsFilterApply = (recipes, ingredientsFilter) => 
-  recipes.filter((recipe) =>
-    ingredientsFilter.every((ingredient) => recipe.allIngredients.includes(ingredient))
-  );
-
 //FILTER RECIPES FUNCTION
 const filterRecipes = (recipes, {nameDescFilter}) => {
   let matchingRecipes = recipes;
