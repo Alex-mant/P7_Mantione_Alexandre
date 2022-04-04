@@ -24,6 +24,6 @@ export const createPage = (storage, dom) => {
     setListOfTagsDisplay();
 
     //Recherche    
-    research(storage.allRecipes)
+    research()
     searchSpecificTag();
 }
