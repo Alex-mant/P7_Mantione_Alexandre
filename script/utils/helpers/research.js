@@ -48,20 +48,28 @@ export const filterRecipes = (recipes, { nameDescFilter, ingredientsFilter, appl
 
   if (nameDescFilter) {
     matchingRecipes = nameDescFilterApply(matchingRecipes, nameDescFilter);
-  }if (ingredientsFilter) {
+  }
+
+  if (ingredientsFilter) {
     matchingRecipes = ingredientsFilterApply(matchingRecipes, ingredientsFilter);
-  }if (appliancesFilter) {
+  }
+
+  if (appliancesFilter) {
     matchingRecipes = appliancesFilterApply(matchingRecipes, appliancesFilter);
-  }if (ustensilsFilter) {
+  }
+
+  if (ustensilsFilter) {
     matchingRecipes = ustensilsFilterApply(matchingRecipes, ustensilsFilter);
   }
   
   recipesDisplay(matchingRecipes);
   setListOf(matchingRecipes);
   setListOfTagsDisplay();
+
   ustFilter = Array.from(document.querySelectorAll(".ustFilter"));
   appFilter = Array.from(document.querySelectorAll(".appFilter"));
   ingFilter = Array.from(document.querySelectorAll(".ingFilter"));
+  
   eventTags();
   removeTagsinTagList()
 

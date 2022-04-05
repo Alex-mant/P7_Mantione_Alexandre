@@ -26,8 +26,6 @@ const createTag = (tags) => {
         div.classList.add("ustensilsFilters");
     }
     
-    
-    
     dom.tagSection.appendChild(div);
     div.appendChild(span);
     div.appendChild(cross);   
