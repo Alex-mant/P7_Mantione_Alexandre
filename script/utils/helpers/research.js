@@ -1,8 +1,8 @@
 /*-------------------IMPORT--------------------*/
 import { recipesDisplay } from "../../views/recipesDisplay.js";
-import { storage } from "../constants/dataStorage.js";
 import { dom } from "../constants/domElement.js";
 /*------------------FUNCTION--------------------*/
+
 const recipes = {
   recipes: [
     {
@@ -1832,44 +1832,64 @@ const recipes = {
   ],
 };
 const { recipes: allRecipes } = recipes;
+let inputValue = [];
 let result = [];
 let resultFiltered = [];
 
-function filterRecipes(inputValue) {
-    if (inputValue.length > 2 || inputValue.length == 0) {        
-    result.length = 0;
-    for (let index = 0; index < allRecipes.length; index++) {
-      const element = allRecipes[index];
-      //creation d'un tableau contenant uniquement les ingrédients de la recette
-      element.allIngredients = [];
-      for (let index = 0; index < element.ingredients.length; index++) {
-        const subElement = element.ingredients[index];
-        element.allIngredients[element.allIngredients.length] = subElement.ingredient; // push
-      }
-      //creation d'une searchBoxString
-      element.searchBoxString = element.allIngredients.join(" ").toString() + " " + element.name + " " + element.description;
-      element.searchBoxString = element.searchBoxString.toLowerCase();
-      //recherche des recettes contenant la saisie
-        if (element.searchBoxString == inputValue) {
-            console.log(element);
-            result[result.length] = element;
-        }
-      
-      resultFiltered.length = 0;
-      //filtrage des doublons
-      for (let index = 0; index < result.length; index++) {
-        let current = result[index];
-        if (resultFiltered.indexOf(current) < 0) {
-          resultFiltered[resultFiltered.length] = current;
-        }
+function idxOf() {
+  Array.prototype.idxOf = function idxOf(obj, start) {
+    for (var i = start || 0, j = this.length; i < j; i++) {
+      if (this[i] === obj) {
+        return i;
       }
     }
-    recipesDisplay(resultFiltered)
+    return -1;
+  };
+}
+
+function filterRecipes(inputValue) {
+  for (let i = 0; i < inputValue.length; i++) {
+    if (inputValue[i].length > 2 || inputValue[i].length == 0) {
+      result.length = 0;
+      for (let index = 0; index < allRecipes.length; index++) {
+        const element = allRecipes[index];
+        //creation d'un tableau contenant uniquement les ingrédients de la recette
+        element.allIngredients = [];
+        for (let index = 0; index < element.ingredients.length; index++) {
+          const subElement = element.ingredients[index];
+          element.allIngredients[element.allIngredients.length] = subElement.ingredient; // push
+        }
+        //creation d'une searchBoxString
+        element.searchBoxString = element.allIngredients.join(" ").toString() + " " + element.name + " " + element.description;
+        element.searchBoxString = element.searchBoxString.toLowerCase();
+
+        //recherche des recettes contenant la saisie
+
+        if (element.searchBoxString.indexOf(inputValue[i]) >= 0) {
+          console.log(element);
+          result[result.length] = element;
+        }
+
+        resultFiltered.length = 0;
+        //filtrage des doublons
+        for (let index = 0; index < result.length; index++) {
+          let current = result[index];
+          if (resultFiltered.idxOf(current) < 0) {
+            resultFiltered[resultFiltered.length] = current;
+          }
+        }
+      }
+      console.log(resultFiltered);
+      recipesDisplay(resultFiltered);
+    }
   }
 }
 
+idxOf(); // ajout Array.prototype.indexOf
+
 export function research() {
   dom.searchRecipes.addEventListener("input", () => {
-    filterRecipes(dom.searchRecipes.value);
+    inputValue[inputValue.length] = dom.searchRecipes.value;
+    filterRecipes(inputValue);
   });
 }
