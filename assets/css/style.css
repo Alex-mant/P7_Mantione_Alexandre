@@ -198,7 +198,7 @@ section#dropdown .button span.text-btn {
   margin-bottom: 10px;
 }
 .liste-tags p:hover{
-  transform: scale(105%);
+  transform: scale(1.05);
 }
 .button1-tag .liste-tags{
   background-color: var(--primColor);
