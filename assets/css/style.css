@@ -156,7 +156,7 @@ input.text-btn::placeholder{
   opacity: 95%;
   position: absolute;  
 }
-section#dropdown button{
+section#dropdown .button{
 
   display: flex;
   justify-content: space-between;

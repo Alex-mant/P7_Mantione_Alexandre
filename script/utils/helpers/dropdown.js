@@ -32,7 +32,7 @@ export const dropdown = () => {
           })
         })
         arrow.classList.replace("not-returned","returned");
-        thisFilter.style.width = "690px"
+        thisFilter.style.width = "660px"
       }
 
       else{
